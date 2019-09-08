@@ -1,0 +1,3 @@
+/home/wonder/Projects/RelayServer/build/CMakeFiles/edit_cache.dir
+/home/wonder/Projects/RelayServer/build/CMakeFiles/rebuild_cache.dir
+/home/wonder/Projects/RelayServer/build/CMakeFiles/relay_server.dir
