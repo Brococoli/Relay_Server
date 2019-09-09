@@ -1,5 +1,4 @@
 #include "relay_server_agent.h"
-#include "header.h"
 
 inline
 RelayServerAgent::RelayServerAgent(){

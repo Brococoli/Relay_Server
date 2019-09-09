@@ -1,5 +1,8 @@
 #include "utils.h"
 
+size_t min(size_t a, size_t b){
+    return a < b ? a : b;
+}
 void AddFL(int fd, int arg){
     int val = fcntl(fd, F_GETFL, 0);
     if(fcntl(fd, F_SETFL, val | arg) < 0)

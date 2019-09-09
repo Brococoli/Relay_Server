@@ -12,6 +12,7 @@
 
 #define MAXLINE 4096
 
+size_t min(size_t a, size_t b);
 void err_ret(const char*);
 void err_quit(const char*);
 void err_sys(const char*);

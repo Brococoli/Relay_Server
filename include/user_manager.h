@@ -1,10 +1,7 @@
 #ifndef USER_MANAGER_H_
 #define USER_MANAGER_H_
 
-#ifndef USER_H_
 #include "user.h"
-#endif
-
 #include <map>
 
 class UserManager
@@ -29,6 +26,7 @@ private:
     std::map<int, User*> user_map_;
 
     User* GetUserPtr(int user_id);
+    void SetUserPtr(int user_id, User* user);
 
 };
 

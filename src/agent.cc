@@ -1,5 +1,4 @@
 #include "agent.h"
-#include <iostream>
 Agent::Agent(){
     read_eof_ = false;
     fd_ = -1;

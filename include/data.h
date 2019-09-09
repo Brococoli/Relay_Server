@@ -15,8 +15,8 @@ public:
     Data();
     ~Data();
 
-    Buffer auto_buffer();
-    void set_auto_buffer(Buffer auto_buffer);
+    Buffer* auto_buffer();
+    void set_auto_buffer(Buffer* auto_buffer);
 
     virtual int Send(int fd);
     virtual int Recv(int fd);

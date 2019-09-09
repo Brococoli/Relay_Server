@@ -8,6 +8,7 @@ AutoBuffer::AutoBuffer(size_t size){
     if(size > MAXBUFSIZE) return;
     front_ = rear_ = NULL;
     front_ptr_ = rear_ptr_ = 0;
+    
     Init(size);
 }
 
@@ -94,7 +95,7 @@ int AutoBuffer::ReadFromCharArray(char* from, size_t read_size){
 
     char* from_start = from, *from_end = from + read_size;
     while(from_end != from_start){
-        size_t copy_size = min(from_end - from_start, MAXBUFSIZE - rear_ptr_);
+        size_t copy_size = min(static_cast<size_t>(from_end - from_start), MAXBUFSIZE - rear_ptr_);
         void* status = memcpy(rear_->data_ptr_ + rear_ptr_, from_start, copy_size);
         if(status != NULL) from_start += copy_size;
         else

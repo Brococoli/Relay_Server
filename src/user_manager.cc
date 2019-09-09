@@ -19,54 +19,58 @@ int UserManager::Register(int user_id, bool online){
 }
 
 inline
-int UserManager::Register(User user){
-    user_map_[user.user_id()] = new User(user);
+int UserManager::Register(User* user){
+    user_map_[user->user_id()] = user;
     return 0;
 }
 
 inline
-int UserManager::ModUserInfo(User user){
-    user_map_[user.user_id()] = new User(user);
+int UserManager::ModUserInfo(User* user){
+    user_map_[user->user_id()] = user;
     return 0;
 }
 
 inline
 int UserManager::ModUserInfo(int user_id, bool online){
-    user_map_[user_id] = 
+    User* user = GetUserPtr(user_id);
+    if(user != NULL){
+        user->set_online(online);
+    }
+    else{
+        SetUserPtr(user_id, new User(user_id, online));
+    }
+    return 0;
 }
 int UserManager::Logout(int user_id){
-    return ModUserInfo(User(user_id, false));
+    return user_map_.erase(user_id);
 }
 
 int UserManager::Login(int user_id){
-    return ModUserInfo(User(user_id, true));
+    User* user = NULL;
+    if((user = GetUserPtr(user_id)) == NULL) return -1;
+    user->set_online(true);
+    return 0;
 }
 
 int UserManager::Unregister(int user_id){
-    return user_set_.erase(User(user_id, true));
+    User* user = NULL;
+    if((user = GetUserPtr(user_id)) == NULL) return -1;
+    delete user;
+    return user_map_.erase(user_id);
 }
 
-inline
-std::unordered_set<User>::iterator UserManager::GetUser(int user_id){
-    return 
-    return  user_set_.find(User(user_id, false));
+int UserManager::Unregister(User* user){
+    if(user == NULL) return -1;
+    delete user;
+    return user_map_.erase(user->user_id());
 }
 
-inline
-std::unordered_set<User>::iterator UserManager::GetUser(User user){
-    return  user_set_.find(user);
-}
 
 bool UserManager::Exist(int user_id){
-    return GetUser(user_id) != user_set_.end();
+    return GetUserPtr(user_id) != NULL;
 }
 bool UserManager::Online(int user_id){
-    std::unordered_set<User>::iterator it = GetUser(user_id);
-    if(it != user_set_.end()){
-        /* return it->online(); */
-        /* return (*it).Online(); */
-        return 1;
-    }
-    else 
-        return -1;
+    User* user = NULL;
+    if((user = GetUserPtr(user_id)) == NULL) return -1;
+    return user->online();
 }
