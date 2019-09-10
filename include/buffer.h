@@ -10,7 +10,7 @@ static const int MAXBUFSIZE = 8192;
 
 class Buffer{
 public:
-    Buffer() ;
+    Buffer() {};
     explicit Buffer(size_t size);
     virtual ~Buffer() {}
 

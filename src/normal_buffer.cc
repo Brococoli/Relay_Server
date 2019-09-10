@@ -80,3 +80,10 @@ int NormalBuffer::ReadFromCharArray(char* from, size_t size){
     else 
         return 0;
 } 
+int NormalBuffer::WriteToCharArray(char* to, size_t size){
+    if(size_ > size) return -1;
+    void* ret = memcpy(to ,ptr_ + rear_, size);
+    if(ret == NULL) return -1;
+    else 
+        return 0;
+} 

@@ -18,8 +18,8 @@ public:
     Datagram* data();
     void set_data(Datagram* data);
 
-    virtual int SendDatagram(Datagram* datagram);
-    virtual int RecvDatagram(Datagram* datagram);
+    /* virtual int SendDatagram(Datagram* datagram); */
+    /* virtual int RecvDatagram(Datagram* datagram); */
 
     void SendError(int err);
 

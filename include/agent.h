@@ -1,17 +1,9 @@
 #ifndef AGENT_H_
 #define AGENT_H_
 
-#ifndef DATAGRAM_H_
 #include "datagram.h"
-#endif
-
-#ifndef AUTO_BUFFER_H
 #include "auto_buffer.h"
-#endif
-
-#ifndef NORMAL_BUFFER_H_
 #include "normal_buffer.h"
-#endif
 
 class Agent
 {

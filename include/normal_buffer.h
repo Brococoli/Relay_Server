@@ -1,16 +1,14 @@
 #ifndef NORMAL_BUFFER_H_
 #define NORMAL_BUFFER_H_
 
-#ifndef BUFFER_H_
 #include "buffer.h"
-#endif
 
 class NormalBuffer: public Buffer
 {
 public:
     NormalBuffer();
     explicit NormalBuffer(size_t size);
-    explicit NormalBuffer(char* buf, size_t size);
+    NormalBuffer(char* buf, size_t size);
     ~NormalBuffer();
 
     virtual int Full();

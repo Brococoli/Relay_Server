@@ -143,8 +143,6 @@ iostream
 /home/wonder/Projects/RelayServer/src/user_manager.cc
 ../include/user_manager.h
 /home/wonder/Projects/RelayServer/include/user_manager.h
-../include/user.h
-/home/wonder/Projects/RelayServer/include/user.h
 
 /home/wonder/Projects/RelayServer/src/utils.cc
 ../include/utils.h

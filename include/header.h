@@ -1,13 +1,8 @@
 #ifndef HEADER_H_
 #define HEADER_H_
 
-#ifndef DATAGRAM_H_
 #include "datagram.h"
-#endif
-
-#ifndef NORMAL_BUFFER_H_
 #include "normal_buffer.h"
-#endif
 
 class Header : public Datagram
 {
@@ -25,11 +20,11 @@ public:
     int data_type();
     void set_data_type(int data_type);
 
-    virtual int ToCharArray(char* char_array, size_t array_size);
-    virtual int ToDatagram(Header& header, char* char_array, size_t size) ;
+    int ToCharArray(char* char_array, size_t array_size);
+    int ToDatagram(Datagram* header, char* char_array, size_t array_size) ;
 
-    virtual int SendDatagram(Datagram* datagram);
-    virtual int RecvDatagram(Datagram* datagram);
+    /* virtual int SendDatagram(Datagram* datagram); */
+    /* virtual int RecvDatagram(Datagram* datagram); */
 
     virtual int Send(int fd);
     virtual int Recv(int fd);

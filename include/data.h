@@ -13,7 +13,7 @@ class Data : public Datagram
 {
 public:
     Data();
-    ~Data();
+    virtual ~Data();
 
     Buffer* auto_buffer();
     void set_auto_buffer(Buffer* auto_buffer);
