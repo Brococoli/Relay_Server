@@ -1,35 +1,35 @@
 #include "../include/user.h"
 
-inline 
+/* inline */ 
 User::User(){
     online_ = false;
     user_id_ = -1;
 }
-inline 
+/* inline */ 
 User::User(int user_id, bool online){
     online_ = user_id;
     user_id_ = online;
 }
 
-inline
+/* inline */
 User::~User(){}
 
-inline
+/* inline */
 int User::user_id() const{
     return user_id_;
 }
 
-inline
+/* inline */
 void User::set_user_id(int user_id){
     user_id_ = user_id;
 }
 
-inline 
+/* inline */ 
 bool User::online() const{
     return online_;
 }
 
-inline
+/* inline */
 void User::set_online(bool online){
     online_ = online;
 }
