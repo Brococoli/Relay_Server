@@ -1,4 +1,4 @@
-#include "normal_buffer.h"
+#include "../include/normal_buffer.h"
 
 NormalBuffer::NormalBuffer(){
     NormalBuffer(4096);

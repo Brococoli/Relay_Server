@@ -1,4 +1,4 @@
-#include "user_manager.h"
+#include "../include/user_manager.h"
 
 inline
 UserManager::UserManager(){
@@ -73,4 +73,14 @@ bool UserManager::Online(int user_id){
     User* user = NULL;
     if((user = GetUserPtr(user_id)) == NULL) return -1;
     return user->online();
+}
+User* UserManager::GetUserPtr(int user_id){
+    std::map<int, User*>::iterator it = user_map_.find(user_id);
+    if(it != user_map_.end()) return it->second;
+    else 
+        return NULL;
+}
+void UserManager::SetUserPtr(int user_id, User * user){
+    user_map_[user_id] = user;
+
 }

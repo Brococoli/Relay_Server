@@ -3,6 +3,7 @@
 
 #include "user.h"
 #include <map>
+#include <iostream>
 
 class UserManager
 {

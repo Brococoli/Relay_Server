@@ -57,81 +57,33 @@ include CMakeFiles/relay_server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/relay_server.dir/flags.make
 
-CMakeFiles/relay_server.dir/src/user.cc.o: CMakeFiles/relay_server.dir/flags.make
-CMakeFiles/relay_server.dir/src/user.cc.o: ../src/user.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/relay_server.dir/src/user.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/user.cc.o -c /home/wonder/Projects/RelayServer/src/user.cc
+CMakeFiles/relay_server.dir/src/epoll.cc.o: CMakeFiles/relay_server.dir/flags.make
+CMakeFiles/relay_server.dir/src/epoll.cc.o: ../src/epoll.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/relay_server.dir/src/epoll.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/epoll.cc.o -c /home/wonder/Projects/RelayServer/src/epoll.cc
 
-CMakeFiles/relay_server.dir/src/user.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/user.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/user.cc > CMakeFiles/relay_server.dir/src/user.cc.i
+CMakeFiles/relay_server.dir/src/epoll.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/epoll.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/epoll.cc > CMakeFiles/relay_server.dir/src/epoll.cc.i
 
-CMakeFiles/relay_server.dir/src/user.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/user.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/user.cc -o CMakeFiles/relay_server.dir/src/user.cc.s
+CMakeFiles/relay_server.dir/src/epoll.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/epoll.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/epoll.cc -o CMakeFiles/relay_server.dir/src/epoll.cc.s
 
-CMakeFiles/relay_server.dir/src/user.cc.o.requires:
+CMakeFiles/relay_server.dir/src/epoll.cc.o.requires:
 
-.PHONY : CMakeFiles/relay_server.dir/src/user.cc.o.requires
+.PHONY : CMakeFiles/relay_server.dir/src/epoll.cc.o.requires
 
-CMakeFiles/relay_server.dir/src/user.cc.o.provides: CMakeFiles/relay_server.dir/src/user.cc.o.requires
-	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/user.cc.o.provides.build
-.PHONY : CMakeFiles/relay_server.dir/src/user.cc.o.provides
+CMakeFiles/relay_server.dir/src/epoll.cc.o.provides: CMakeFiles/relay_server.dir/src/epoll.cc.o.requires
+	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/epoll.cc.o.provides.build
+.PHONY : CMakeFiles/relay_server.dir/src/epoll.cc.o.provides
 
-CMakeFiles/relay_server.dir/src/user.cc.o.provides.build: CMakeFiles/relay_server.dir/src/user.cc.o
-
-
-CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o: CMakeFiles/relay_server.dir/flags.make
-CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o: ../src/relay_server_agent.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o -c /home/wonder/Projects/RelayServer/src/relay_server_agent.cc
-
-CMakeFiles/relay_server.dir/src/relay_server_agent.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/relay_server_agent.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/relay_server_agent.cc > CMakeFiles/relay_server.dir/src/relay_server_agent.cc.i
-
-CMakeFiles/relay_server.dir/src/relay_server_agent.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/relay_server_agent.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/relay_server_agent.cc -o CMakeFiles/relay_server.dir/src/relay_server_agent.cc.s
-
-CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.requires:
-
-.PHONY : CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.requires
-
-CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.provides: CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.requires
-	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.provides.build
-.PHONY : CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.provides
-
-CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.provides.build: CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o
-
-
-CMakeFiles/relay_server.dir/src/user_manager.cc.o: CMakeFiles/relay_server.dir/flags.make
-CMakeFiles/relay_server.dir/src/user_manager.cc.o: ../src/user_manager.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/relay_server.dir/src/user_manager.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/user_manager.cc.o -c /home/wonder/Projects/RelayServer/src/user_manager.cc
-
-CMakeFiles/relay_server.dir/src/user_manager.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/user_manager.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/user_manager.cc > CMakeFiles/relay_server.dir/src/user_manager.cc.i
-
-CMakeFiles/relay_server.dir/src/user_manager.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/user_manager.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/user_manager.cc -o CMakeFiles/relay_server.dir/src/user_manager.cc.s
-
-CMakeFiles/relay_server.dir/src/user_manager.cc.o.requires:
-
-.PHONY : CMakeFiles/relay_server.dir/src/user_manager.cc.o.requires
-
-CMakeFiles/relay_server.dir/src/user_manager.cc.o.provides: CMakeFiles/relay_server.dir/src/user_manager.cc.o.requires
-	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/user_manager.cc.o.provides.build
-.PHONY : CMakeFiles/relay_server.dir/src/user_manager.cc.o.provides
-
-CMakeFiles/relay_server.dir/src/user_manager.cc.o.provides.build: CMakeFiles/relay_server.dir/src/user_manager.cc.o
+CMakeFiles/relay_server.dir/src/epoll.cc.o.provides.build: CMakeFiles/relay_server.dir/src/epoll.cc.o
 
 
 CMakeFiles/relay_server.dir/src/utils.cc.o: CMakeFiles/relay_server.dir/flags.make
 CMakeFiles/relay_server.dir/src/utils.cc.o: ../src/utils.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/relay_server.dir/src/utils.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/relay_server.dir/src/utils.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/utils.cc.o -c /home/wonder/Projects/RelayServer/src/utils.cc
 
 CMakeFiles/relay_server.dir/src/utils.cc.i: cmake_force
@@ -153,9 +105,81 @@ CMakeFiles/relay_server.dir/src/utils.cc.o.provides: CMakeFiles/relay_server.dir
 CMakeFiles/relay_server.dir/src/utils.cc.o.provides.build: CMakeFiles/relay_server.dir/src/utils.cc.o
 
 
+CMakeFiles/relay_server.dir/src/header.cc.o: CMakeFiles/relay_server.dir/flags.make
+CMakeFiles/relay_server.dir/src/header.cc.o: ../src/header.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/relay_server.dir/src/header.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/header.cc.o -c /home/wonder/Projects/RelayServer/src/header.cc
+
+CMakeFiles/relay_server.dir/src/header.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/header.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/header.cc > CMakeFiles/relay_server.dir/src/header.cc.i
+
+CMakeFiles/relay_server.dir/src/header.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/header.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/header.cc -o CMakeFiles/relay_server.dir/src/header.cc.s
+
+CMakeFiles/relay_server.dir/src/header.cc.o.requires:
+
+.PHONY : CMakeFiles/relay_server.dir/src/header.cc.o.requires
+
+CMakeFiles/relay_server.dir/src/header.cc.o.provides: CMakeFiles/relay_server.dir/src/header.cc.o.requires
+	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/header.cc.o.provides.build
+.PHONY : CMakeFiles/relay_server.dir/src/header.cc.o.provides
+
+CMakeFiles/relay_server.dir/src/header.cc.o.provides.build: CMakeFiles/relay_server.dir/src/header.cc.o
+
+
+CMakeFiles/relay_server.dir/src/user_manager.cc.o: CMakeFiles/relay_server.dir/flags.make
+CMakeFiles/relay_server.dir/src/user_manager.cc.o: ../src/user_manager.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/relay_server.dir/src/user_manager.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/user_manager.cc.o -c /home/wonder/Projects/RelayServer/src/user_manager.cc
+
+CMakeFiles/relay_server.dir/src/user_manager.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/user_manager.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/user_manager.cc > CMakeFiles/relay_server.dir/src/user_manager.cc.i
+
+CMakeFiles/relay_server.dir/src/user_manager.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/user_manager.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/user_manager.cc -o CMakeFiles/relay_server.dir/src/user_manager.cc.s
+
+CMakeFiles/relay_server.dir/src/user_manager.cc.o.requires:
+
+.PHONY : CMakeFiles/relay_server.dir/src/user_manager.cc.o.requires
+
+CMakeFiles/relay_server.dir/src/user_manager.cc.o.provides: CMakeFiles/relay_server.dir/src/user_manager.cc.o.requires
+	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/user_manager.cc.o.provides.build
+.PHONY : CMakeFiles/relay_server.dir/src/user_manager.cc.o.provides
+
+CMakeFiles/relay_server.dir/src/user_manager.cc.o.provides.build: CMakeFiles/relay_server.dir/src/user_manager.cc.o
+
+
+CMakeFiles/relay_server.dir/src/user.cc.o: CMakeFiles/relay_server.dir/flags.make
+CMakeFiles/relay_server.dir/src/user.cc.o: ../src/user.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/relay_server.dir/src/user.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/user.cc.o -c /home/wonder/Projects/RelayServer/src/user.cc
+
+CMakeFiles/relay_server.dir/src/user.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/user.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/user.cc > CMakeFiles/relay_server.dir/src/user.cc.i
+
+CMakeFiles/relay_server.dir/src/user.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/user.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/user.cc -o CMakeFiles/relay_server.dir/src/user.cc.s
+
+CMakeFiles/relay_server.dir/src/user.cc.o.requires:
+
+.PHONY : CMakeFiles/relay_server.dir/src/user.cc.o.requires
+
+CMakeFiles/relay_server.dir/src/user.cc.o.provides: CMakeFiles/relay_server.dir/src/user.cc.o.requires
+	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/user.cc.o.provides.build
+.PHONY : CMakeFiles/relay_server.dir/src/user.cc.o.provides
+
+CMakeFiles/relay_server.dir/src/user.cc.o.provides.build: CMakeFiles/relay_server.dir/src/user.cc.o
+
+
 CMakeFiles/relay_server.dir/src/normal_buffer.cc.o: CMakeFiles/relay_server.dir/flags.make
 CMakeFiles/relay_server.dir/src/normal_buffer.cc.o: ../src/normal_buffer.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/relay_server.dir/src/normal_buffer.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/relay_server.dir/src/normal_buffer.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/normal_buffer.cc.o -c /home/wonder/Projects/RelayServer/src/normal_buffer.cc
 
 CMakeFiles/relay_server.dir/src/normal_buffer.cc.i: cmake_force
@@ -175,30 +199,6 @@ CMakeFiles/relay_server.dir/src/normal_buffer.cc.o.provides: CMakeFiles/relay_se
 .PHONY : CMakeFiles/relay_server.dir/src/normal_buffer.cc.o.provides
 
 CMakeFiles/relay_server.dir/src/normal_buffer.cc.o.provides.build: CMakeFiles/relay_server.dir/src/normal_buffer.cc.o
-
-
-CMakeFiles/relay_server.dir/src/agent.cc.o: CMakeFiles/relay_server.dir/flags.make
-CMakeFiles/relay_server.dir/src/agent.cc.o: ../src/agent.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/relay_server.dir/src/agent.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/agent.cc.o -c /home/wonder/Projects/RelayServer/src/agent.cc
-
-CMakeFiles/relay_server.dir/src/agent.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/agent.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/agent.cc > CMakeFiles/relay_server.dir/src/agent.cc.i
-
-CMakeFiles/relay_server.dir/src/agent.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/agent.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/agent.cc -o CMakeFiles/relay_server.dir/src/agent.cc.s
-
-CMakeFiles/relay_server.dir/src/agent.cc.o.requires:
-
-.PHONY : CMakeFiles/relay_server.dir/src/agent.cc.o.requires
-
-CMakeFiles/relay_server.dir/src/agent.cc.o.provides: CMakeFiles/relay_server.dir/src/agent.cc.o.requires
-	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/agent.cc.o.provides.build
-.PHONY : CMakeFiles/relay_server.dir/src/agent.cc.o.provides
-
-CMakeFiles/relay_server.dir/src/agent.cc.o.provides.build: CMakeFiles/relay_server.dir/src/agent.cc.o
 
 
 CMakeFiles/relay_server.dir/src/data.cc.o: CMakeFiles/relay_server.dir/flags.make
@@ -225,9 +225,57 @@ CMakeFiles/relay_server.dir/src/data.cc.o.provides: CMakeFiles/relay_server.dir/
 CMakeFiles/relay_server.dir/src/data.cc.o.provides.build: CMakeFiles/relay_server.dir/src/data.cc.o
 
 
+CMakeFiles/relay_server.dir/src/agent.cc.o: CMakeFiles/relay_server.dir/flags.make
+CMakeFiles/relay_server.dir/src/agent.cc.o: ../src/agent.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/relay_server.dir/src/agent.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/agent.cc.o -c /home/wonder/Projects/RelayServer/src/agent.cc
+
+CMakeFiles/relay_server.dir/src/agent.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/agent.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/agent.cc > CMakeFiles/relay_server.dir/src/agent.cc.i
+
+CMakeFiles/relay_server.dir/src/agent.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/agent.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/agent.cc -o CMakeFiles/relay_server.dir/src/agent.cc.s
+
+CMakeFiles/relay_server.dir/src/agent.cc.o.requires:
+
+.PHONY : CMakeFiles/relay_server.dir/src/agent.cc.o.requires
+
+CMakeFiles/relay_server.dir/src/agent.cc.o.provides: CMakeFiles/relay_server.dir/src/agent.cc.o.requires
+	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/agent.cc.o.provides.build
+.PHONY : CMakeFiles/relay_server.dir/src/agent.cc.o.provides
+
+CMakeFiles/relay_server.dir/src/agent.cc.o.provides.build: CMakeFiles/relay_server.dir/src/agent.cc.o
+
+
+CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o: CMakeFiles/relay_server.dir/flags.make
+CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o: ../src/relay_server_agent.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o -c /home/wonder/Projects/RelayServer/src/relay_server_agent.cc
+
+CMakeFiles/relay_server.dir/src/relay_server_agent.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/relay_server_agent.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/relay_server_agent.cc > CMakeFiles/relay_server.dir/src/relay_server_agent.cc.i
+
+CMakeFiles/relay_server.dir/src/relay_server_agent.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/relay_server_agent.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/relay_server_agent.cc -o CMakeFiles/relay_server.dir/src/relay_server_agent.cc.s
+
+CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.requires:
+
+.PHONY : CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.requires
+
+CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.provides: CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.requires
+	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.provides.build
+.PHONY : CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.provides
+
+CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.provides.build: CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o
+
+
 CMakeFiles/relay_server.dir/src/auto_buffer.cc.o: CMakeFiles/relay_server.dir/flags.make
 CMakeFiles/relay_server.dir/src/auto_buffer.cc.o: ../src/auto_buffer.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/relay_server.dir/src/auto_buffer.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/relay_server.dir/src/auto_buffer.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/auto_buffer.cc.o -c /home/wonder/Projects/RelayServer/src/auto_buffer.cc
 
 CMakeFiles/relay_server.dir/src/auto_buffer.cc.i: cmake_force
@@ -247,54 +295,6 @@ CMakeFiles/relay_server.dir/src/auto_buffer.cc.o.provides: CMakeFiles/relay_serv
 .PHONY : CMakeFiles/relay_server.dir/src/auto_buffer.cc.o.provides
 
 CMakeFiles/relay_server.dir/src/auto_buffer.cc.o.provides.build: CMakeFiles/relay_server.dir/src/auto_buffer.cc.o
-
-
-CMakeFiles/relay_server.dir/src/header.cc.o: CMakeFiles/relay_server.dir/flags.make
-CMakeFiles/relay_server.dir/src/header.cc.o: ../src/header.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/relay_server.dir/src/header.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/header.cc.o -c /home/wonder/Projects/RelayServer/src/header.cc
-
-CMakeFiles/relay_server.dir/src/header.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/header.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/header.cc > CMakeFiles/relay_server.dir/src/header.cc.i
-
-CMakeFiles/relay_server.dir/src/header.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/header.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/header.cc -o CMakeFiles/relay_server.dir/src/header.cc.s
-
-CMakeFiles/relay_server.dir/src/header.cc.o.requires:
-
-.PHONY : CMakeFiles/relay_server.dir/src/header.cc.o.requires
-
-CMakeFiles/relay_server.dir/src/header.cc.o.provides: CMakeFiles/relay_server.dir/src/header.cc.o.requires
-	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/header.cc.o.provides.build
-.PHONY : CMakeFiles/relay_server.dir/src/header.cc.o.provides
-
-CMakeFiles/relay_server.dir/src/header.cc.o.provides.build: CMakeFiles/relay_server.dir/src/header.cc.o
-
-
-CMakeFiles/relay_server.dir/src/epoll.cc.o: CMakeFiles/relay_server.dir/flags.make
-CMakeFiles/relay_server.dir/src/epoll.cc.o: ../src/epoll.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wonder/Projects/RelayServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/relay_server.dir/src/epoll.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/relay_server.dir/src/epoll.cc.o -c /home/wonder/Projects/RelayServer/src/epoll.cc
-
-CMakeFiles/relay_server.dir/src/epoll.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/relay_server.dir/src/epoll.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wonder/Projects/RelayServer/src/epoll.cc > CMakeFiles/relay_server.dir/src/epoll.cc.i
-
-CMakeFiles/relay_server.dir/src/epoll.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/relay_server.dir/src/epoll.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wonder/Projects/RelayServer/src/epoll.cc -o CMakeFiles/relay_server.dir/src/epoll.cc.s
-
-CMakeFiles/relay_server.dir/src/epoll.cc.o.requires:
-
-.PHONY : CMakeFiles/relay_server.dir/src/epoll.cc.o.requires
-
-CMakeFiles/relay_server.dir/src/epoll.cc.o.provides: CMakeFiles/relay_server.dir/src/epoll.cc.o.requires
-	$(MAKE) -f CMakeFiles/relay_server.dir/build.make CMakeFiles/relay_server.dir/src/epoll.cc.o.provides.build
-.PHONY : CMakeFiles/relay_server.dir/src/epoll.cc.o.provides
-
-CMakeFiles/relay_server.dir/src/epoll.cc.o.provides.build: CMakeFiles/relay_server.dir/src/epoll.cc.o
 
 
 CMakeFiles/relay_server.dir/main.cc.o: CMakeFiles/relay_server.dir/flags.make
@@ -323,31 +323,31 @@ CMakeFiles/relay_server.dir/main.cc.o.provides.build: CMakeFiles/relay_server.di
 
 # Object files for target relay_server
 relay_server_OBJECTS = \
-"CMakeFiles/relay_server.dir/src/user.cc.o" \
-"CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o" \
-"CMakeFiles/relay_server.dir/src/user_manager.cc.o" \
-"CMakeFiles/relay_server.dir/src/utils.cc.o" \
-"CMakeFiles/relay_server.dir/src/normal_buffer.cc.o" \
-"CMakeFiles/relay_server.dir/src/agent.cc.o" \
-"CMakeFiles/relay_server.dir/src/data.cc.o" \
-"CMakeFiles/relay_server.dir/src/auto_buffer.cc.o" \
-"CMakeFiles/relay_server.dir/src/header.cc.o" \
 "CMakeFiles/relay_server.dir/src/epoll.cc.o" \
+"CMakeFiles/relay_server.dir/src/utils.cc.o" \
+"CMakeFiles/relay_server.dir/src/header.cc.o" \
+"CMakeFiles/relay_server.dir/src/user_manager.cc.o" \
+"CMakeFiles/relay_server.dir/src/user.cc.o" \
+"CMakeFiles/relay_server.dir/src/normal_buffer.cc.o" \
+"CMakeFiles/relay_server.dir/src/data.cc.o" \
+"CMakeFiles/relay_server.dir/src/agent.cc.o" \
+"CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o" \
+"CMakeFiles/relay_server.dir/src/auto_buffer.cc.o" \
 "CMakeFiles/relay_server.dir/main.cc.o"
 
 # External object files for target relay_server
 relay_server_EXTERNAL_OBJECTS =
 
-relay_server: CMakeFiles/relay_server.dir/src/user.cc.o
-relay_server: CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o
-relay_server: CMakeFiles/relay_server.dir/src/user_manager.cc.o
-relay_server: CMakeFiles/relay_server.dir/src/utils.cc.o
-relay_server: CMakeFiles/relay_server.dir/src/normal_buffer.cc.o
-relay_server: CMakeFiles/relay_server.dir/src/agent.cc.o
-relay_server: CMakeFiles/relay_server.dir/src/data.cc.o
-relay_server: CMakeFiles/relay_server.dir/src/auto_buffer.cc.o
-relay_server: CMakeFiles/relay_server.dir/src/header.cc.o
 relay_server: CMakeFiles/relay_server.dir/src/epoll.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/utils.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/header.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/user_manager.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/user.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/normal_buffer.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/data.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/agent.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o
+relay_server: CMakeFiles/relay_server.dir/src/auto_buffer.cc.o
 relay_server: CMakeFiles/relay_server.dir/main.cc.o
 relay_server: CMakeFiles/relay_server.dir/build.make
 relay_server: CMakeFiles/relay_server.dir/link.txt
@@ -359,16 +359,16 @@ CMakeFiles/relay_server.dir/build: relay_server
 
 .PHONY : CMakeFiles/relay_server.dir/build
 
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/user.cc.o.requires
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.requires
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/user_manager.cc.o.requires
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/utils.cc.o.requires
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/normal_buffer.cc.o.requires
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/agent.cc.o.requires
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/data.cc.o.requires
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/auto_buffer.cc.o.requires
-CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/header.cc.o.requires
 CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/epoll.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/utils.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/header.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/user_manager.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/user.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/normal_buffer.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/data.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/agent.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/relay_server_agent.cc.o.requires
+CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/src/auto_buffer.cc.o.requires
 CMakeFiles/relay_server.dir/requires: CMakeFiles/relay_server.dir/main.cc.o.requires
 
 .PHONY : CMakeFiles/relay_server.dir/requires

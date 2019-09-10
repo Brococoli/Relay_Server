@@ -1,4 +1,4 @@
-#include "auto_buffer.h"
+#include "../include/auto_buffer.h"
 
 AutoBuffer::AutoBuffer(){
     AutoBuffer(4096);

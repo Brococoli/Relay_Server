@@ -13,7 +13,7 @@ public:
     Datagram() {}
     virtual ~Datagram() {}
 
-    virtual void ToCharArray(char* char_array, size_t array_size) = 0;
+    virtual int ToCharArray(char* char_array, size_t array_size) = 0;
     virtual Datagram* ToDatagram(char* char_array) = 0;
     virtual Datagram* ToDatagram(Buffer* buf) = 0;
     virtual void ToBuffer(Buffer* buf) = 0;

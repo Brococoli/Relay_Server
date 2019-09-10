@@ -9,7 +9,7 @@
 #include "normal_buffer.h"
 #endif
 
-class Header
+class Header : public Datagram
 {
 public:
     Header();
@@ -26,7 +26,7 @@ public:
     void set_data_type(int data_type);
 
     virtual int ToCharArray(char* char_array, size_t array_size);
-    virtual int ToDatagram(Header& header, char* char_array, size_t size);
+    virtual int ToDatagram(Header& header, char* char_array, size_t size) ;
 
     virtual int SendDatagram(Datagram* datagram);
     virtual int RecvDatagram(Datagram* datagram);

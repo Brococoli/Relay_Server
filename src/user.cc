@@ -1,4 +1,4 @@
-#include "user.h"
+#include "../include/user.h"
 
 inline 
 User::User(){
@@ -44,11 +44,11 @@ void User::set_online(bool online){
 /*     return this->user_id_ == user.user_id_; */
 /* } */
 
-inline
-bool User::operator == (const User& user) const{
-    return this->user_id_ == user.user_id_;
-}
-inline
-bool User::operator != (const User& user) const{
-    return this->user_id_ != user.user_id_;
-}
+/* inline */
+/* bool User::operator == (const User& user) const{ */
+/*     return this->user_id_ == user.user_id_; */
+/* } */
+/* inline */
+/* bool User::operator != (const User& user) const{ */
+/*     return this->user_id_ != user.user_id_; */
+/* } */

@@ -17,8 +17,8 @@ public:
 
     /* bool operator < (const User& user) const; */
     /* bool operator = (const User& user) const; */
-    bool operator == (const User& user) const;
-    bool operator != (const User& user) const;
+    /* bool operator == (const User& user) const; */
+    /* bool operator != (const User& user) const; */
 private:
     int user_id_;
     bool online_;
