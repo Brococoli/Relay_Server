@@ -1,9 +1,18 @@
 #include "../include/relay_server_agent.h"
 
-inline
-RelayServerAgent::RelayServerAgent(){
-    header_ = NULL;
-    data_ = NULL;
+/* inline */
+/* RelayServerAgent::RelayServerAgent(){ */
+/*     /1* header_ = NULL; *1/ */
+/*     /1* data_ = NULL; *1/ */
+/*     header_ = new Header(); */
+/*     data_ = new Data(); */
+/* } */
+inline 
+RelayServerAgent::RelayServerAgent(int fd){
+    /* header_ = new Header(); */
+    /* data_ = new Data(); */
+    header_ = data_ = NULL;
+    fd_ = -1;
 }
 
 inline
@@ -12,6 +21,14 @@ RelayServerAgent::~RelayServerAgent(){
     if(data_ != NULL) delete data_;
 }
 
+inline
+bool RelayServerAgent::isHeaderEmpty(){
+    return header_ == NULL;
+}
+inline
+bool RelayServerAgent::isDataEmpty(){
+    return data_ == NULL;
+}
 inline 
 Datagram* RelayServerAgent::header(){
     return header_;

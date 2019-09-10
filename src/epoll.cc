@@ -3,11 +3,13 @@
 inline
 Epoll::Epoll(){
     epoll_fd_ = epoll_create1(0);
+    ev_ = new struct epoll_event;
 }
 
 inline
 Epoll::~Epoll(){
     close(epoll_fd_);
+    delete ev_;
 }
 
 inline
@@ -27,9 +29,11 @@ int Epoll::Wait(int maxevents, int timeout){
 }
 
 inline
-int Epoll::AddFd(int fd, struct epoll_event* event, Agent* agent){
-    event->data.ptr = agent;
-    return epoll_ctl(epoll_fd_, EPOLL_CTL_ADD, fd, event);
+int Epoll::AddFd(int fd, int event, Agent* agent){
+    agent->set_fd(fd);
+    ev_->data.ptr = agent;
+    ev_->events = event;
+    return epoll_ctl(epoll_fd_, EPOLL_CTL_ADD, fd, ev_);
 }
 
 inline

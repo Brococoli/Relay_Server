@@ -3,6 +3,10 @@ Agent::Agent(){
     read_eof_ = false;
     fd_ = -1;
 }
+inline
+Agent::Agent(int fd){
+    fd_ = fd;
+}
 
 inline
 int Agent::fd(){
@@ -41,6 +45,12 @@ void Agent::set_read_eof(bool read_eof){
 int Agent::SendDatagram(Datagram* datagram){
     datagram->Send(fd_);
 }
+int Agent::SendDatagramToFd(int fd, Datagram* datagram){
+    datagram->Send(fd);
+}
 int Agent::RecvDatagram(Datagram* datagram){
     datagram->Recv(fd_);
+}
+int Agent::RecvDatagramFromFd(int fd, Datagram* datagram){
+    datagram->Recv(fd);
 }

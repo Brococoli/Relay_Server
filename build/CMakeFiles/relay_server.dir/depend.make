@@ -4,9 +4,12 @@
 CMakeFiles/relay_server.dir/main.cc.o: ../include/agent.h
 CMakeFiles/relay_server.dir/main.cc.o: ../include/auto_buffer.h
 CMakeFiles/relay_server.dir/main.cc.o: ../include/buffer.h
+CMakeFiles/relay_server.dir/main.cc.o: ../include/data.h
 CMakeFiles/relay_server.dir/main.cc.o: ../include/datagram.h
 CMakeFiles/relay_server.dir/main.cc.o: ../include/epoll.h
+CMakeFiles/relay_server.dir/main.cc.o: ../include/header.h
 CMakeFiles/relay_server.dir/main.cc.o: ../include/normal_buffer.h
+CMakeFiles/relay_server.dir/main.cc.o: ../include/relay_server_agent.h
 CMakeFiles/relay_server.dir/main.cc.o: ../include/utils.h
 CMakeFiles/relay_server.dir/main.cc.o: ../main.cc
 

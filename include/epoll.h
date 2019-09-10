@@ -3,9 +3,7 @@
 
 #include <sys/epoll.h>
 
-#ifndef AGENT_H_
 #include "agent.h"
-#endif
 
 #define MAXEVENTS 1024
 
@@ -15,6 +13,7 @@ public:
     Epoll();
     virtual ~Epoll();
     struct epoll_event events[MAXEVENTS];
+    struct epoll_event* ev_;
 
 
     int epoll_fd();
@@ -22,12 +21,13 @@ public:
 
     int Create();
     int Wait(int maxevents, int timeout);
-    int AddFd(int fd, struct epoll_event* event, Agent* agent);
+    int AddFd(int fd, int monitor_event, Agent* agent);
     int DeleteFd(int fd);
     int ModFdsEvent(int fd, struct epoll_event* event);
 
 private:
     int epoll_fd_;
+
 
 };
 #endif

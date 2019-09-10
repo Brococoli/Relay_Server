@@ -9,6 +9,7 @@ class Agent
 {
 public:
     Agent();
+    Agent(int fd);
     virtual ~Agent() {}
 
     int fd();
@@ -18,7 +19,9 @@ public:
     void set_read_eof(bool read_eof);
 
     virtual int SendDatagram(Datagram* datagram);
+    static int SendDatagramToFd(int fd, Datagram* datagram);
     virtual int RecvDatagram(Datagram* datagram);
+    static int RecvDatagramFromFd(int fd, Datagram* datagram);
 
 protected:
     bool read_eof_;

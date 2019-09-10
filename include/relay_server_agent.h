@@ -9,7 +9,7 @@
 class RelayServerAgent: public Agent
 {
 public:
-    RelayServerAgent() ;
+    RelayServerAgent(int fd) ;
     virtual ~RelayServerAgent();
 
     Datagram* header();
@@ -20,6 +20,8 @@ public:
 
     /* virtual int SendDatagram(Datagram* datagram); */
     /* virtual int RecvDatagram(Datagram* datagram); */
+    bool isHeaderEmpty();
+    bool isDataEmpty();
 
     void SendError(int err);
 
