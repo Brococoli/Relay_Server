@@ -11,6 +11,7 @@
 #include <stdlib.h>
 
 #define MAXLINE 4096
+#define SUCCESS 0
 
 size_t min(size_t a, size_t b);
 void err_ret(const char*);

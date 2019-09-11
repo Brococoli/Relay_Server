@@ -1,13 +1,19 @@
 #include <iostream>
 #include "epoll.h"
 #include "relay_server_agent.h"
+#include "utils.h"
+#include "user_manager.h"
 
 #include "sys/socket.h"
+
 
 int main()
 {
     int listenfd, fd, event;
     RelayServerAgent* agent;
+
+    UserManager user_manager;
+    
 
     Epoll epoll = Epoll();
     epoll.AddFd(listenfd, EPOLLIN, new RelayServerAgent(listenfd));
@@ -27,25 +33,41 @@ int main()
             }
             else{
                 if(fd == EPOLLIN){
-                    if(agent->isHeaderEmpty()){
-                        
-                        agent->RecvDatagram(agent->header());
+                    if(!agent->recv_header()){
 
+                        if(agent->header()->Recv(agent->fd()) == SUCCESS){
+                            if(agent->header()->datagram_type() < 0){
+                                close(agent->fd());
+                                epoll.DeleteFd(agent->fd());
+                                delete agent;
+                                continue;
+                            }
+                            else{
+                                user_manager.Register(new User(dynamic_cast<Header*>(agent->header())->to_user_id(),
+                                                               agent->fd(),
+                                                               true));
+                                agent->set_recv_header(true);
+                            }
+                            
+
+                        }
                         
                     }
                     else{
-                        agent->RecvDatagram(agent->data());
+                        if(agent->data()->Recv(agent->fd()) == SUCCESS)
+                            agent->set_recv_data(true);
                     }
                     
                 }
                 if(fd == EPOLLOUT){
-                    if(!agent->isHeaderEmpty()){
-                        //i should add a flag in relay_server_agent to show if i have send header or recieve a header;
-                        Agent::SendDatagram(agent->header());
-                    }
-                    if(agent->data() == NULL){
-                        agent->set_data(new Data);
-                        Agent::SendDatagram(agent->data());
+                    if(agent->recv_header()&&!agent->send_data()){
+                        int to_user_id = dynamic_cast<Header*>(agent->header())->to_user_id();
+                        if(user_manager.Online(to_user_id) == true){
+                            if(agent->data()->Send(to_user_id) == SUCCESS){
+                                agent->set_send_data(true);
+                            }
+                        }
+
                     }
 
                 }

@@ -20,13 +20,22 @@ public:
 
     /* virtual int SendDatagram(Datagram* datagram); */
     /* virtual int RecvDatagram(Datagram* datagram); */
-    bool isHeaderEmpty();
-    bool isDataEmpty();
+
+    bool recv_header();
+    void set_recv_header(bool);
+    bool send_header();
+    void set_send_header(bool);
+    bool recv_data();
+    void set_recv_data(bool);
+    bool send_data();
+    void set_send_data(bool);
 
     void SendError(int err);
 
 private:
     Datagram* header_, *data_;
+    bool recv_header_, send_header_;
+    bool recv_data_, send_data_;
 
 
 };

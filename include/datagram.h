@@ -8,7 +8,7 @@
 class Datagram
 {
 public:
-    Datagram() {}
+    Datagram() { datagram_type_ = -1; }
     virtual ~Datagram() {}
 
     /* virtual int ToCharArray(char* char_array, size_t array_size) = 0; */
@@ -18,7 +18,12 @@ public:
 
     virtual int Send(int fd) = 0;
     virtual int Recv(int fd) = 0;
-private:
+
+    int datagram_type() const ;
+    void set_datagram_type(int);
+
+protected:
+    int datagram_type_;
 
 };
 

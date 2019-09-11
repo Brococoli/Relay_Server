@@ -6,7 +6,7 @@ class User
 {
 public:
     User();
-    User(int user_id, bool online);
+    User(int user_id, int sockfd = -1, bool online = false);
     virtual ~User();
 
     bool online() const;
@@ -15,6 +15,8 @@ public:
     int user_id() const;
     void set_user_id(int user_id);
 
+    int sockfd() const;
+    void set_sockfd(int);
     /* bool operator < (const User& user) const; */
     /* bool operator = (const User& user) const; */
     /* bool operator == (const User& user) const; */
@@ -22,6 +24,7 @@ public:
 private:
     int user_id_;
     bool online_;
+    int sockfd_;
 
 };
 

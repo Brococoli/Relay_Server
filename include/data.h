@@ -18,6 +18,8 @@ public:
     virtual int Recv(int fd);
 
 private:
+    int data_type_;   //to show whether is header or data, moreover if is -1, then reserved_position_ will show the errno
+    int reserved_position_;
     Buffer* auto_buffer_;
 
 };

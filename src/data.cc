@@ -2,6 +2,8 @@
 
 inline
 Data::Data(){
+    data_type_ = 1;
+    reserved_position_ = 0;
     auto_buffer_ = new AutoBuffer();
 }
 

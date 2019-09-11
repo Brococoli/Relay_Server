@@ -6,9 +6,10 @@ User::User(){
     user_id_ = -1;
 }
 /* inline */ 
-User::User(int user_id, bool online){
+User::User(int user_id, int sockfd, bool online){
     online_ = user_id;
     user_id_ = online;
+    sockfd_ = sockfd;
 }
 
 /* inline */
@@ -32,6 +33,14 @@ bool User::online() const{
 /* inline */
 void User::set_online(bool online){
     online_ = online;
+}
+
+int User::sockfd() const{
+    return sockfd_;
+}
+
+void User::set_sockfd(int sockfd){
+    sockfd_ = sockfd;
 }
 
 /* inline */

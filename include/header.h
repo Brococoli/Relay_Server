@@ -17,8 +17,8 @@ public:
     int to_user_id();
     void set_to_user_id(int to_user_id);
 
-    int data_type();
-    void set_data_type(int data_type);
+    /* int data_type(); */
+    /* void set_data_type(int data_type); */
 
     int ToCharArray(char* char_array, size_t array_size);
     int ToDatagram(Datagram* header, char* char_array, size_t array_size) ;
@@ -33,7 +33,6 @@ public:
 private:
     int byte_size_;
     int to_user_id_;
-    int data_type_;
     int reserved_position_;
     Buffer* normal_buffer_;
     
