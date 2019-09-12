@@ -23,7 +23,7 @@ public:
     int Wait(int maxevents, int timeout);
     int AddFd(int fd, int monitor_event, Agent* agent);
     int DeleteFd(int fd);
-    int ModFdsEvent(int fd, struct epoll_event* event);
+    int ModFdsEvent(int fd, int monitor_event, Agent* agent);
 
 private:
     int epoll_fd_;

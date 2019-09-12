@@ -42,6 +42,8 @@ int Epoll::DeleteFd(int fd){
 }
 
 /* inline */
-int Epoll::ModFdsEvent(int fd, struct epoll_event* event){
-    return epoll_ctl(epoll_fd_, EPOLL_CTL_MOD, fd, event);
+int Epoll::ModFdsEvent(int fd, int event, Agent* agent){
+    ev_->events = event;
+    ev_->data.ptr = agent;
+    return epoll_ctl(epoll_fd_, EPOLL_CTL_MOD, fd, ev_);
 }

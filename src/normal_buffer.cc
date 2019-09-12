@@ -74,15 +74,15 @@ int NormalBuffer::Resize(size_t size){
 }
 
 int NormalBuffer::ReadFromCharArray(char* from, size_t size){
-    if(size > size_) Resize(rear_ - front_ + size);
-    void* ret = memcpy(ptr_ + rear_, from, size);
+    if(size > size_) Resize(front_ + size);
+    void* ret = memcpy(ptr_ + front_, from, size_ - front_);
     if(ret == NULL) return -1;
     else 
         return 0;
 } 
 int NormalBuffer::WriteToCharArray(char* to, size_t size){
     if(size_ > size) return -1;
-    void* ret = memcpy(to ,ptr_ + rear_, size);
+    void* ret = memcpy(to, ptr_ + rear_, front_ - rear_);
     if(ret == NULL) return -1;
     else 
         return 0;

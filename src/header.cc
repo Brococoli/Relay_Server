@@ -16,8 +16,11 @@ Header::Header(int err){
     reserved_position_ = 0;
     normal_buffer_ = new NormalBuffer(20);
 
-    datagram_type_ = -1 * err;
+    datagram_type_ = err;
 
+}
+Header::~Header(){
+    if(normal_buffer_) delete normal_buffer_;
 }
 int Header::byte_size(){
     return byte_size_;
@@ -41,7 +44,7 @@ Header::~Header(){
 
 int Header::ToCharArray(char* char_array, size_t array_size){
     if(array_size < 16) return -1;
-    return sprintf(char_array, "%d %d %d %d ", byte_size_, to_user_id_, datagram_type_, reserved_position_);
+    return sprintf(char_array, " %d %d %d %d ", byte_size_, to_user_id_, datagram_type_, reserved_position_);
 }
 
 int Header::ToDatagram(Datagram* datagram, char* char_array, size_t size){
@@ -50,7 +53,7 @@ int Header::ToDatagram(Datagram* datagram, char* char_array, size_t size){
     if(size < 16) return -1;
 
     int byte_size, to_user_id, data_type, reserved_position;
-    sscanf(char_array, "%d %d %d %d ", &byte_size, &to_user_id, &data_type, &reserved_position);
+    sscanf(char_array, " %d %d %d %d ", &byte_size, &to_user_id, &data_type, &reserved_position);
     header->byte_size_ = byte_size;
     /* header->set_byte_size(byte_size); */
     header->to_user_id_ = to_user_id;
@@ -62,7 +65,7 @@ int Header::ToDatagram(Datagram* datagram, char* char_array, size_t size){
 int Header::Send(int fd){
     char mess[20] = {};
     ToCharArray(mess, 20);
-    normal_buffer_->ReadFromCharArray(mess, 20);
+    normal_buffer_->ReadFromCharArray(mess, sizeof(mess));
     return normal_buffer_->WriteToFd(fd);
 }
 
@@ -71,6 +74,6 @@ int Header::Recv(int fd){
     if(status == EWOULDBLOCK) return EWOULDBLOCK;
     char mess[20] = {};
     normal_buffer_->WriteToCharArray(mess, 20);
-    ToDatagram(this, mess, 20);
+    ToDatagram(this, mess, sizeof(mess));
     return 0;
 }

@@ -7,7 +7,6 @@
 #include "sys/socket.h"
 #include "netinet/in.h"
 
-
 int main()
 {
     int listenfd, fd, event;
@@ -43,7 +42,7 @@ int main()
                 socklen_t socklen = sizeof(sa);
                 while((fd = accept(listenfd, &sa, &socklen)) > 0){
                     AddFL(fd, O_NONBLOCK);
-                    epoll.AddFd(fd, EPOLLIN | EPOLLOUT, new RelayServerAgent(fd));
+                    epoll.AddFd(fd, EPOLLIN, new RelayServerAgent(fd));
                 }
             }
             else{
@@ -62,24 +61,21 @@ int main()
                                                                agent->fd(),
                                                                true));
                                 agent->set_recv_header(true);
+                                epoll.ModFdsEvent(fd, EPOLLIN | EPOLLOUT, agent);
                             }
-                            
-
                         }
-                        
                     }
-                    else{
+                    if(agent->recv_header() && !agent->recv_data()){
                         if(agent->data()->Recv(agent->fd()) == SUCCESS)
                             agent->set_recv_data(true);
                     }
                     
                 }
                 if(fd == EPOLLOUT){
-                    if(agent->recv_header()&&!agent->send_data()){
+                    if(agent->recv_data()&&!agent->send_data()){
                         int to_user_id = dynamic_cast<Header*>(agent->header())->to_user_id();
                         if(user_manager.Exist(to_user_id) == false){
-                            agent->SendError(ENOTEXIST);
-                            
+                            agent->SendError(Agent::ENOTEXIST); //send error but not close the connect
                         }
                         if(user_manager.Online(to_user_id) == true){
                             if(agent->data()->Send(to_user_id) == SUCCESS){
@@ -87,7 +83,7 @@ int main()
                             }
                         }
                         else{
-                            agent->SendError(ENOTONLINE);
+                            agent->SendError(Agent::ENOTONLINE);
                         }
                     }
                 }

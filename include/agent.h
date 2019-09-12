@@ -23,6 +23,9 @@ public:
     virtual int RecvDatagram(Datagram* datagram);
     static int RecvDatagramFromFd(int fd, Datagram* datagram);
 
+    static const int ENOTEXIST = -1;
+    static const int ENOTONLINE = -2;
+
 protected:
     bool read_eof_;
     int fd_;
