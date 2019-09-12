@@ -1,6 +1,6 @@
 #include "../include/header.h"
 
-inline
+/* inline */
 Header::Header(){
     byte_size_ = 16;
     to_user_id_ = -1;
@@ -9,7 +9,7 @@ Header::Header(){
     normal_buffer_ = new NormalBuffer(20);
 }
 
-inline
+/* inline */
 Header::Header(int err){
     byte_size_ = 16;
     to_user_id_ = -1;
@@ -19,8 +19,22 @@ Header::Header(int err){
     datagram_type_ = -1 * err;
 
 }
+int Header::byte_size(){
+    return byte_size_;
+}
+void Header::set_byte_size(int byte_size){
+    byte_size_ = byte_size;
+}
 
-inline
+int Header::to_user_id(){
+    return to_user_id_;
+}
+void Header::set_to_user_id(int to_user_id){
+    to_user_id_ = to_user_id;
+
+}
+
+/* inline */
 Header::~Header(){
     if(normal_buffer_) delete normal_buffer_;
 }

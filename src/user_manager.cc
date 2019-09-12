@@ -1,36 +1,36 @@
 #include "../include/user_manager.h"
 
-inline
+/* inline */
 UserManager::UserManager(){
     user_map_.clear();
 }
 
-inline
+/* inline */
 UserManager::~UserManager(){
     for(auto int_and_pUser_pair: user_map_){
         delete int_and_pUser_pair.second;
     }
 }
 
-inline
+/* inline */
 int UserManager::Register(int user_id, bool online){
     user_map_[user_id] = new User(user_id, online);
     return 0;
 }
 
-inline
+/* inline */
 int UserManager::Register(User* user){
     user_map_[user->user_id()] = user;
     return 0;
 }
 
-inline
+/* inline */
 int UserManager::ModUserInfo(User* user){
     user_map_[user->user_id()] = user;
     return 0;
 }
 
-inline
+/* inline */
 int UserManager::ModUserInfo(int user_id, bool online){
     User* user = GetUserPtr(user_id);
     if(user != NULL){

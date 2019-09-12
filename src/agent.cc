@@ -3,27 +3,27 @@ Agent::Agent(){
     read_eof_ = false;
     fd_ = -1;
 }
-inline
+/* inline */
 Agent::Agent(int fd){
     fd_ = fd;
 }
 
-inline
+/* inline */
 int Agent::fd(){
     return fd_;
 }
 
-inline
+/* inline */
 void Agent::set_fd(int fd){
     fd_ = fd;
 }
 
-inline
+/* inline */
 bool Agent::read_eof(){
     return read_eof_;
 }
 
-inline
+/* inline */
 void Agent::set_read_eof(bool read_eof){
     read_eof_ = read_eof;
 }

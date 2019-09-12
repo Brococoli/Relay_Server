@@ -7,7 +7,7 @@
 /*     header_ = new Header(); */
 /*     data_ = new Data(); */
 /* } */
-inline 
+/* inline */ 
 RelayServerAgent::RelayServerAgent(int fd){
     header_ = new Header();
     data_ = new Data();
@@ -16,72 +16,72 @@ RelayServerAgent::RelayServerAgent(int fd){
     fd_ = -1;
 }
 
-inline
+/* inline */
 RelayServerAgent::~RelayServerAgent(){
     if(header_ != NULL) delete header_;
     if(data_ != NULL) delete data_;
 }
 
-inline 
+/* inline */ 
 bool RelayServerAgent::recv_header(){
     return recv_header_;
 }
 
-inline
+/* inline */
 bool RelayServerAgent::send_header(){
     return send_header_;
 }
 
-inline
+/* inline */
 void RelayServerAgent::set_recv_header(bool recv_header){
     recv_header_ = recv_header;
 }
 
-inline
+/* inline */
 void RelayServerAgent::set_send_header(bool send_header){
     send_header_ = send_header;
 }
-inline 
+/* inline */ 
 bool RelayServerAgent::recv_data(){
     return recv_data_;
 }
 
-inline
+/* inline */
 bool RelayServerAgent::send_data(){
     return send_data_;
 }
 
-inline
+/* inline */
 void RelayServerAgent::set_recv_data(bool recv_data){
     recv_data_ = recv_data;
 }
 
-inline
+/* inline */
 void RelayServerAgent::set_send_data(bool send_data){
     send_data_ = send_data;
 }
 
-inline 
+/* inline */ 
 Datagram* RelayServerAgent::header(){
     return header_;
 }
 
-inline 
+/* inline */ 
 void RelayServerAgent::set_header(Datagram* header){
     header_ = header;
 }
 
-inline
+/* inline */
 Datagram* RelayServerAgent::data(){
     return data_;
 }
 
-inline
+/* inline */
 void RelayServerAgent::set_data(Datagram* data){
     data_ = data;
 }
 
-inline
+/* inline */
 void RelayServerAgent::SendError(int err){
     Header header(err);
     header.Send(fd_);
