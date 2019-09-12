@@ -5,12 +5,26 @@
 #include "user_manager.h"
 
 #include "sys/socket.h"
+#include "netinet/in.h"
 
 
 int main()
 {
     int listenfd, fd, event;
     RelayServerAgent* agent;
+
+    struct sockaddr_in servaddr;
+    listenfd = socket(AF_INET, SOCK_STREAM, 0);
+    bzero(&servaddr, sizeof(servaddr));
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_port = htons(9888);
+    servaddr.sin_addr.s_addr = htonl(0);
+
+    AddFL(listenfd, O_NONBLOCK);
+
+    bind(listenfd, (struct sockaddr*) &servaddr, sizeof(servaddr));
+
+    listen(listenfd, 1024);
 
     UserManager user_manager;
     
@@ -19,8 +33,8 @@ int main()
     epoll.AddFd(listenfd, EPOLLIN, new RelayServerAgent(listenfd));
 
     for(;;){
-        int nfds = epoll.Wait(1024, -1);
-        for(int i=0; i< nfds; ++i){
+        int ndfs = epoll.Wait(1024, -1);
+        for(int i=0; i< ndfs; ++i){
             agent = static_cast<RelayServerAgent*>(epoll.events[i].data.ptr);
             event = epoll.events[i].events;
             fd = agent->fd();
@@ -28,6 +42,7 @@ int main()
                 struct sockaddr sa;
                 socklen_t socklen = sizeof(sa);
                 while((fd = accept(listenfd, &sa, &socklen)) > 0){
+                    AddFL(fd, O_NONBLOCK);
                     epoll.AddFd(fd, EPOLLIN | EPOLLOUT, new RelayServerAgent(fd));
                 }
             }
