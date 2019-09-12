@@ -77,14 +77,19 @@ int main()
                 if(fd == EPOLLOUT){
                     if(agent->recv_header()&&!agent->send_data()){
                         int to_user_id = dynamic_cast<Header*>(agent->header())->to_user_id();
+                        if(user_manager.Exist(to_user_id) == false){
+                            agent->SendError(ENOTEXIST);
+                            
+                        }
                         if(user_manager.Online(to_user_id) == true){
                             if(agent->data()->Send(to_user_id) == SUCCESS){
                                 agent->set_send_data(true);
                             }
                         }
-
+                        else{
+                            agent->SendError(ENOTONLINE);
+                        }
                     }
-
                 }
             }
 
