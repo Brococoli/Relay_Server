@@ -37,10 +37,6 @@ void Header::set_to_user_id(int to_user_id){
 
 }
 
-/* inline */
-Header::~Header(){
-    if(normal_buffer_) delete normal_buffer_;
-}
 
 int Header::ToCharArray(char* char_array, size_t array_size){
     if(array_size < 16) return -1;
