@@ -11,15 +11,20 @@
 RelayServerAgent::RelayServerAgent(int fd){
     header_ = new Header();
     data_ = new Data();
-    header_ = data_ = NULL;
     recv_header_ = send_header_ = recv_data_ = send_data_ = false;
-    fd_ = -1;
+    fd_ = fd;
 }
 
 /* inline */
 RelayServerAgent::~RelayServerAgent(){
     if(header_ != NULL) delete header_;
     if(data_ != NULL) delete data_;
+}
+int RelayServerAgent::Clear(){
+    recv_header_ = send_header_ = recv_data_ = send_data_ = false;
+    header_->Clear();
+    data_->Clear();
+    return 1;
 }
 
 /* inline */ 

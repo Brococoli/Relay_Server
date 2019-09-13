@@ -7,8 +7,8 @@ User::User(){
 }
 /* inline */ 
 User::User(int user_id, int sockfd, bool online){
-    online_ = user_id;
-    user_id_ = online;
+    online_ = online;
+    user_id_ = user_id;
     sockfd_ = sockfd;
 }
 

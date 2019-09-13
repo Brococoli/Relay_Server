@@ -2,7 +2,6 @@
 
 /* inline */
 Data::Data(){
-    data_type_ = 1;
     reserved_position_ = 0;
     auto_buffer_ = new AutoBuffer();
 }
@@ -10,6 +9,10 @@ Data::Data(){
 /* inline */ 
 Data::~Data(){
     delete auto_buffer_;
+}
+int Data::Clear(){
+    reserved_position_ = 0;
+    left_to_read_ = 0;
 }
 
 /* inline */
@@ -19,5 +22,15 @@ int Data::Send(int fd){
 
 /* inline */ 
 int Data::Recv(int fd){
-    return auto_buffer_->ReadFromFd(fd);
+    int status = auto_buffer_->ReadFromFd(fd, left_to_read_);
+    if(status < 0){
+        if(errno == EWOULDBLOCK)
+            return EWOULDBLOCK;
+        err_sys("data recv error");
+    }
+
+    left_to_read_ -= status;
+    if(left_to_read_ == 0)
+        return SUCCESS;
+    return 1;
 }

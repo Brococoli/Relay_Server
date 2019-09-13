@@ -14,6 +14,7 @@
 #define SUCCESS 0
 
 size_t min(size_t a, size_t b);
+int max(int a, int b);
 void err_ret(const char*);
 void err_quit(const char*);
 void err_sys(const char*);

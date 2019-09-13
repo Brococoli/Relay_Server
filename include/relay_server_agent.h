@@ -32,6 +32,7 @@ public:
 
     void SendError(int err);
 
+    int Clear();
 private:
     Datagram* header_, *data_;
     bool recv_header_, send_header_;

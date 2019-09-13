@@ -23,6 +23,7 @@ public:
     int Unregister(int user_id);
     bool Online(int user_id);
     bool Exist(int user_id);
+    int GetUserFd(int user_id);
 private:
     std::map<int, User*> user_map_;
 

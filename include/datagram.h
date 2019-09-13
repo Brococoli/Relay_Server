@@ -18,6 +18,7 @@ public:
 
     virtual int Send(int fd) = 0;
     virtual int Recv(int fd) = 0;
+    virtual int Clear() = 0;
 
     int datagram_type() const ;
     void set_datagram_type(int);

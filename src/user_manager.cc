@@ -76,11 +76,13 @@ bool UserManager::Online(int user_id){
 }
 User* UserManager::GetUserPtr(int user_id){
     std::map<int, User*>::iterator it = user_map_.find(user_id);
-    if(it != user_map_.end()) return it->second;
-    else 
-        return NULL;
+    return it->second; //if not find then it->second == false
 }
 void UserManager::SetUserPtr(int user_id, User * user){
     user_map_[user_id] = user;
 
+}
+
+int UserManager::GetUserFd(int user_id){
+    return GetUserPtr(user_id)->sockfd();
 }

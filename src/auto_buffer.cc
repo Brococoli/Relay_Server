@@ -1,8 +1,5 @@
 #include "../include/auto_buffer.h"
 
-AutoBuffer::AutoBuffer(){
-    AutoBuffer(4096);
-}
 
 AutoBuffer::AutoBuffer(size_t size){
     if(size > MAXBUFSIZE) return;
@@ -25,11 +22,9 @@ AutoBuffer::AutoBufferNode* AutoBuffer::InitBufNode(int size = 4096){
     node->next_ = NULL;
     return node;
 }
-Buffer* AutoBuffer::Init(size_t size){
-    AutoBuffer* buf_ = (AutoBuffer*)malloc(sizeof(AutoBuffer));
+void AutoBuffer::Init(size_t size){
     front_ = rear_ = InitBufNode(size);
     front_ptr_ = rear_ptr_ = 0;
-    return buf_;
 }
 void AutoBuffer::PushBufNode(){
     rear_->next_ = InitBufNode();
@@ -55,7 +50,16 @@ void AutoBuffer::Free(){
         q = p->next_;
         FreeBufNode(p);
     }
-    /* delete this; */
+}
+int AutoBuffer::Clear(){
+    AutoBufferNode* p, *q;
+    for(p = front_->next_; p!=NULL ; p = q){
+        q = p->next_;
+        FreeBufNode(p);
+    }
+    rear_ = front_;
+    front_ptr_ = rear_ptr_ = 0;
+    return 1;
 }
 int AutoBuffer::Full(){
     return 0;
@@ -67,6 +71,14 @@ int AutoBuffer::Empty(){
 }
 int AutoBuffer::ReadFromFd(int fd){
     int status = read(fd, rear_->data_ptr_ + rear_ptr_, MAXBUFSIZE - rear_ptr_);
+    if(status > 0) rear_ptr_ += status;
+    if(rear_ptr_ == MAXBUFSIZE)
+        PushBufNode();
+    return status;
+}
+int AutoBuffer::ReadFromFd(int fd, int read_size){
+    int size = min(read_size, MAXBUFSIZE - rear_ptr_);
+    int status = read(fd, rear_->data_ptr_ + rear_ptr_, size);
     if(status > 0) rear_ptr_ += status;
     if(rear_ptr_ == MAXBUFSIZE)
         PushBufNode();

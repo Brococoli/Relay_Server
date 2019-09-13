@@ -17,6 +17,12 @@ public:
     int to_user_id();
     void set_to_user_id(int to_user_id);
 
+    int my_user_id() const { return my_user_id_; }
+    void set_my_user_id(int my_user_id) { my_user_id_ = my_user_id; }
+
+    int left_to_read() const { return left_to_read_; }
+    void set_left_to_read(int left_to_read) { left_to_read_ = left_to_read; }
+
     /* int data_type(); */
     /* void set_data_type(int data_type); */
 
@@ -29,12 +35,17 @@ public:
     virtual int Send(int fd);
     virtual int Recv(int fd);
     
+    virtual int Clear();
 
 private:
     int byte_size_;
+    int my_user_id_;
     int to_user_id_;
     int reserved_position_;
     Buffer* normal_buffer_;
+
+    int left_to_read_;
+    static const int header_size_ = 55;
     
 
 };
