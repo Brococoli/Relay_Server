@@ -74,9 +74,9 @@ int Header::ToDatagram(Datagram* datagram, char* char_array, size_t size){
 }
 
 int Header::Send(int fd){
-    /* char mess[header_size_] = {}; */
-    /* ToCharArray(mess, header_size_); */
-    /* normal_buffer_->ReadFromCharArray(mess, sizeof(mess)); */
+    char mess[header_size_] = {};
+    ToCharArray(mess, header_size_);
+    normal_buffer_->ReadFromCharArray(mess, sizeof(mess));
     return normal_buffer_->WriteToFd(fd);
 }
 
