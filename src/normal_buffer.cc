@@ -92,7 +92,7 @@ int NormalBuffer::ReadFromCharArray(char* from, size_t size){
     void* ret = memcpy(ptr_ + front_, from, size_ - front_);
     if(ret == NULL) return -1;
     else {
-        /* front_ += size; */
+        front_ += size;
         return 0;
     }
 } 
@@ -101,7 +101,7 @@ int NormalBuffer::WriteToCharArray(char* to, size_t size){
     void* ret = memcpy(to, ptr_ + rear_, front_ - rear_);
     if(ret == NULL) return -1;
     else {
-        /* front_ = rear_ = 0; */
+        front_ = rear_ = 0;
         return 0;
     }
 } 

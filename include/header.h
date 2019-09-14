@@ -3,6 +3,7 @@
 
 #include "datagram.h"
 #include "normal_buffer.h"
+#include <assert.h>
 
 class Header : public Datagram
 {
@@ -23,11 +24,15 @@ public:
     int left_to_read() const { return left_to_read_; }
     void set_left_to_read(int left_to_read) { left_to_read_ = left_to_read; }
 
+    int left_to_write() const { return left_to_write_; }
+    void set_left_to_write(int left_to_write) { left_to_write_ = left_to_write; }
     /* int data_type(); */
     /* void set_data_type(int data_type); */
 
     int ToCharArray(char* char_array, size_t array_size);
     int ToDatagram(Datagram* header, char* char_array, size_t array_size) ;
+
+    static  int header_size() { return header_size_; }
 
     /* virtual int SendDatagram(Datagram* datagram); */
     /* virtual int RecvDatagram(Datagram* datagram); */
@@ -45,6 +50,7 @@ private:
     Buffer* normal_buffer_;
 
     int left_to_read_;
+    int left_to_write_;
     static const int header_size_ = 55;
     
 

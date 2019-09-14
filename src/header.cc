@@ -10,17 +10,20 @@ Header::Header(){
     normal_buffer_ = new NormalBuffer(header_size_);
 
     left_to_read_ = header_size_;
+    left_to_write_ = 0;
 }
 
 /* inline */
 Header::Header(int err){
     byte_size_ = 0;
+    my_user_id_ = -1;
     to_user_id_ = -1;
     reserved_position_ = 0;
     normal_buffer_ = new NormalBuffer(header_size_);
 
     datagram_type_ = err;
     left_to_read_ = 0;
+    left_to_write_ = header_size_;
 
 }
 Header::~Header(){
@@ -33,6 +36,7 @@ int Header::Clear(){
     datagram_type_ = 0;
     reserved_position_ = 0;
     left_to_read_ = header_size_;
+    left_to_write_ = 0;
     normal_buffer_->Clear();
     return 1;
 }
@@ -54,7 +58,7 @@ void Header::set_to_user_id(int to_user_id){
 
 int Header::ToCharArray(char* char_array, size_t array_size){
     if(array_size < header_size_) return -1;
-    return sprintf(char_array, "%d %d %d %d %d", byte_size_, my_user_id_, to_user_id_, datagram_type_, reserved_position_);
+    return sprintf(char_array, "%d %d %d %d %d\n", byte_size_, my_user_id_, to_user_id_, datagram_type_, reserved_position_);
 }
 
 int Header::ToDatagram(Datagram* datagram, char* char_array, size_t size){
@@ -74,14 +78,33 @@ int Header::ToDatagram(Datagram* datagram, char* char_array, size_t size){
 }
 
 int Header::Send(int fd){
-    char mess[header_size_] = {};
-    ToCharArray(mess, header_size_);
-    normal_buffer_->ReadFromCharArray(mess, sizeof(mess));
-    return normal_buffer_->WriteToFd(fd);
+    /* assert(left_to_write_ != 0); */
+    if(normal_buffer_->Empty()){
+        left_to_write_ = header_size_;
+        char mess[header_size_] = {};
+        ToCharArray(mess, header_size_);
+        normal_buffer_->ReadFromCharArray(mess, sizeof(mess));
+    }
+    int status = normal_buffer_->WriteToFd(fd);
+    if(status < 0){
+        if(errno == EWOULDBLOCK)
+            return EWOULDBLOCK;
+        else
+            err_sys("header send error");
+    }
+    left_to_write_ -= status;
+
+    if(left_to_write_ == 0)
+        return SUCCESS;
+    else
+        return status;
 }
 
 int Header::Recv(int fd){
     /* normal_buffer_->Clear(); */
+    assert(normal_buffer_->Empty());
+    if(normal_buffer_->Empty()) 
+        left_to_read_ = header_size_;
     int status = normal_buffer_->ReadFromFd(fd, left_to_read_);
     if(status < 0){
         if(errno == EWOULDBLOCK)
@@ -95,7 +118,6 @@ int Header::Recv(int fd){
         char mess[header_size_] = {};
         normal_buffer_->WriteToCharArray(mess, header_size_);
         ToDatagram(this, mess, sizeof(mess));
-        /* normal_buffer_->Clear(); */
         return SUCCESS;
     }
     return 1;
