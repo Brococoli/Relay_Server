@@ -51,8 +51,8 @@ private:
     int reserved_position_;
     NormalBuffer* normal_buffer_;
 
-    int left_to_read_;
-    int left_to_write_;
+    /* int left_to_read_; */
+    /* int left_to_write_; */
     static const int header_size_ = 55;
     
 

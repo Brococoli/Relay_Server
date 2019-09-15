@@ -25,8 +25,6 @@ public:
     virtual int Clear() = 0;
 
 protected:
-    /* virtual void Init(size_t size) = 0; */
-    /* virtual void Free() = 0; */
 
 };
 
