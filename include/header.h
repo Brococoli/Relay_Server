@@ -29,8 +29,8 @@ public:
     /* int data_type(); */
     /* void set_data_type(int data_type); */
 
-    int ToCharArray(char* char_array, size_t array_size);
-    int ToDatagram(Datagram* header, char* char_array, size_t array_size) ;
+    int ToNormalBuffer();
+    int ToHeader() ;
 
     static  int header_size() { return header_size_; }
 
@@ -39,6 +39,8 @@ public:
 
     virtual int Send(int fd);
     virtual int Recv(int fd);
+    virtual int Send(int fd, size_t read_size);
+    virtual int Recv(int fd, size_t write_size);
     
     virtual int Clear();
 
@@ -47,7 +49,7 @@ private:
     int my_user_id_;
     int to_user_id_;
     int reserved_position_;
-    Buffer* normal_buffer_;
+    NormalBuffer* normal_buffer_;
 
     int left_to_read_;
     int left_to_write_;

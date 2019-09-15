@@ -25,17 +25,18 @@
 class AutoBuffer: public Buffer
 {
 public:
-    explicit AutoBuffer(size_t size = MAXBUFSIZE);
+    explicit AutoBuffer();
     virtual ~AutoBuffer();
 
 
-    virtual int Full();
-    virtual int Empty();
+    virtual int Full() const;
+    virtual int Empty() const;
+    virtual size_t Size() const;
+
     virtual int ReadFromFd(int fd);
-    virtual int ReadFromFd(int fd, int read_size);
+    virtual int ReadFromFd(int fd, size_t read_size);
     virtual int WriteToFd(int fd);
-    virtual int ReadFromCharArray(char* from, size_t size);
-    virtual int WriteToCharArray(char* to, size_t size);
+    virtual int WriteToFd(int fd, size_t write_size);
     
     virtual int Clear();
 
@@ -52,6 +53,7 @@ private:
 
     size_t front_ptr_, rear_ptr_;
     AutoBufferNode *front_, *rear_;
+    static const int MAXBUFBLOCKSIZE = 2046;
 
     AutoBufferNode* InitBufNode(int size);
     void PushBufNode();

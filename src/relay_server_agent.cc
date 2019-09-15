@@ -87,9 +87,11 @@ void RelayServerAgent::set_data(Datagram* data){
 }
 
 /* inline */
-void RelayServerAgent::SendError(int err){
-    header_->set_datagram_type(err);  //need to modify
-    dynamic_cast<Header*>(header_)->set_left_to_write(Header::header_size());
+void RelayServerAgent::SendError(int to_user_id, int err){
+    Header header;
+    header.set_to_user_id(to_user_id);
+    header.set_datagram_type(err);
+    header.Send(fd_);
 }
 
 

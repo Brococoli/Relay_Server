@@ -6,37 +6,52 @@
 #include <string.h>
 
 void str_cli(FILE* fp, int fd){
+    /* int my_id, to_id, datagram_type, data_size = 0, reserved_byte_; */
+
     Header header;
     Data data;
-    char sendline[2000]= {};
-
+    pid_t pid;
+    int ret;
+    int to_id, my_id, data_size;
     
-    /* int my_id, to_id, datagram_type, data_size = 0, reserved_byte_; */
-    for(;;){
-
-        printf("data_size, my_id, to_id, datagram_size, reserved_byte_:");
-        fflush(stdout); 
-    
-        /* scanf("%s", sendline); */
-        gets(sendline);
-        /* header.Recv(STDIN_FILENO); */
-        header.ToDatagram(&header, sendline, sizeof(sendline));
-        /* sscanf(sendline, "%d %d %d %d %d", &data_size, &my_id, &to_id, &datagram_type, &reserved_byte_); */
-        header.Send(fd);
-
-        sleep(1);
-        header.Recv(fd);
-        header.Send(STDOUT_FILENO);
-
-        if(header.byte_size()&&header.datagram_type()>=0){
-            scanf("%s", sendline);
-            write(fd, sendline, header.byte_size());
-            sleep(1);
-            data.Recv(fd);
-            printf("data:");
+    if((pid = fork()) == 0){
+        for(;;){
+            header.set_left_to_read(Header::header_size());
+            while( (ret = header.Recv(fd)) != SUCCESS) {}
+            printf("recv from: %d, datagram type: %d\n", header.my_user_id(), header.datagram_type());
+            data.set_left_to_read(header.byte_size());
+            while( (ret = data.Recv(fd)) != SUCCESS) {}
+            printf("recv from: %d, data: ", header.my_user_id());
             fflush(stdout);
             data.Send(STDOUT_FILENO);
         }
+
+    }
+
+    for(;;){
+
+        sleep(1);
+        printf("my_id, to_id, data_size: ");
+        fflush(stdout);
+        scanf("%d %d %d", &my_id, &to_id, &data_size);
+        header.set_my_user_id(my_id);
+        header.set_to_user_id(to_id);
+        header.set_datagram_type(0);
+        header.set_byte_size(data_size);
+
+        header.set_left_to_write(Header::header_size());
+        while( (ret = header.Send(fd)) != SUCCESS) {}
+        printf("Header Send Success\n");
+
+        sleep(1);
+        printf("print data:");
+        fflush(stdout);
+        data.set_left_to_read(data_size);
+        data.Recv(STDIN_FILENO);
+        data.set_left_to_write(header.byte_size());
+        while( (ret = data.Send(fd)) != SUCCESS) {}
+        printf("Data Send Success\n");
+
     }
 
 }

@@ -9,25 +9,30 @@
 class NormalBuffer: public Buffer
 {
 public:
-    NormalBuffer();
-    explicit NormalBuffer(size_t size);
+    explicit NormalBuffer(size_t size = 2048);
     NormalBuffer(char* buf, size_t size);
+
     ~NormalBuffer();
 
-    virtual int Full();
-    virtual int Empty();
-    virtual int ReadFromFd(int fd);
-    virtual int WriteToFd(int fd);
-    virtual int ReadFromFd(int fd, int read_size);
-    virtual int ReadFromCharArray(char* from, size_t size);
-    virtual int WriteToCharArray(char* to, size_t size);
-    int Resize(size_t size);
+    char* ptr() const { return ptr_; }
 
-    virtual int Clear();
+    virtual int Full() const ;
+    virtual int Empty() const ;
+    virtual size_t Size() const;
+
+    virtual int ReadFromFd(int fd);
+    virtual int ReadFromFd(int fd, size_t read_size);
+    virtual int WriteToFd(int fd);
+    virtual int WriteToFd(int fd, size_t write_size);
+    virtual int AddByte(size_t size);
+    virtual int ReadByte(size_t size);
+    virtual int Clear() ;
 
 protected:
-    virtual void Init(size_t size);
-    virtual void Free();
+    void Init(size_t size);
+    void Free();
+
+    int Resize(size_t size);
 
 private:
     char* ptr_;

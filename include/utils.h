@@ -12,6 +12,7 @@
 
 #define MAXLINE 4096
 #define SUCCESS 0
+#define ENOTDONE 1
 
 size_t min(size_t a, size_t b);
 int max(int a, int b);

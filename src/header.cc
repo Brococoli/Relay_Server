@@ -9,7 +9,7 @@ Header::Header(){
     reserved_position_ = 0;
     normal_buffer_ = new NormalBuffer(header_size_);
 
-    left_to_read_ = header_size_;
+    left_to_read_ = 0;
     left_to_write_ = 0;
 }
 
@@ -56,35 +56,31 @@ void Header::set_to_user_id(int to_user_id){
 }
 
 
-int Header::ToCharArray(char* char_array, size_t array_size){
-    if(array_size < header_size_) return -1;
-    return sprintf(char_array, "%d %d %d %d %d\n", byte_size_, my_user_id_, to_user_id_, datagram_type_, reserved_position_);
+int Header::ToNormalBuffer(){
+    normal_buffer_->Clear();
+    normal_buffer_->AddByte(header_size_); 
+    return sprintf(normal_buffer_->ptr(), "%d %d %d %d %d\n", byte_size_, my_user_id_, to_user_id_, datagram_type_, reserved_position_);
 }
 
-int Header::ToDatagram(Datagram* datagram, char* char_array, size_t size){
+int Header::ToHeader(){
     /* Header* header = static_cast<Header*>(datagram); */
-    Header* header = dynamic_cast<Header*>(datagram);
-    if(size < header_size_) return -1;
-
     int byte_size, my_user_id, to_user_id, data_type, reserved_position;
-    sscanf(char_array, "%d %d %d %d %d", &byte_size, &my_user_id, &to_user_id, &data_type, &reserved_position);
-    header->byte_size_ = byte_size;
+    sscanf(normal_buffer_->ptr(), "%d %d %d %d %d", &byte_size, &my_user_id, &to_user_id, &data_type, &reserved_position);
+    normal_buffer_->Clear();
+
+    byte_size_ = byte_size;
     /* header->set_byte_size(byte_size); */
-    header->my_user_id_ = my_user_id;
-    header->to_user_id_ = to_user_id;
-    header->datagram_type_ = data_type;
-    header->reserved_position_ = reserved_position;
+    my_user_id_ = my_user_id;
+    to_user_id_ = to_user_id;
+    datagram_type_ = data_type;
+    reserved_position_ = reserved_position;
     return 0;
 }
 
 int Header::Send(int fd){
     /* assert(left_to_write_ != 0); */
-    if(normal_buffer_->Empty()){
-        left_to_write_ = header_size_;
-        char mess[header_size_] = {};
-        ToCharArray(mess, header_size_);
-        normal_buffer_->ReadFromCharArray(mess, sizeof(mess));
-    }
+    if(normal_buffer_->Empty())
+        ToNormalBuffer();
     int status = normal_buffer_->WriteToFd(fd);
     if(status < 0){
         if(errno == EWOULDBLOCK)
@@ -94,17 +90,36 @@ int Header::Send(int fd){
     }
     left_to_write_ -= status;
 
-    if(left_to_write_ == 0)
+    if(left_to_write_ == 0){
+        normal_buffer_->Clear();
         return SUCCESS;
+    }
+    else
+        return ENOTDONE;
+}
+int Header::Send(int fd, size_t write_size){
+    /* assert(left_to_write_ != 0); */
+    if(normal_buffer_->Empty())
+        ToNormalBuffer();
+    int status = normal_buffer_->WriteToFd(fd, write_size);
+    if(status < 0){
+        if(errno == EWOULDBLOCK)
+            return EWOULDBLOCK;
+        else
+            err_sys("header send error");
+    }
+
+    if(write_size == static_cast<size_t>(status)){
+        return SUCCESS;
+    }
     else
         return status;
 }
 
 int Header::Recv(int fd){
     /* normal_buffer_->Clear(); */
-    assert(normal_buffer_->Empty());
-    if(normal_buffer_->Empty()) 
-        left_to_read_ = header_size_;
+    if(!normal_buffer_->Empty())
+        normal_buffer_->Clear();
     int status = normal_buffer_->ReadFromFd(fd, left_to_read_);
     if(status < 0){
         if(errno == EWOULDBLOCK)
@@ -115,10 +130,29 @@ int Header::Recv(int fd){
 
     left_to_read_ -= status;
     if(left_to_read_ == 0){
-        char mess[header_size_] = {};
-        normal_buffer_->WriteToCharArray(mess, header_size_);
-        ToDatagram(this, mess, sizeof(mess));
+        ToHeader();
+        normal_buffer_->Clear();
         return SUCCESS;
     }
-    return 1;
+    else
+        return ENOTDONE;
+}
+int Header::Recv(int fd, size_t read_size){
+    /* normal_buffer_->Clear(); */
+    if(!normal_buffer_->Empty()) 
+        normal_buffer_->Clear();
+
+    int status = normal_buffer_->ReadFromFd(fd, read_size);
+    if(status < 0){
+        if(errno == EWOULDBLOCK)
+            return EWOULDBLOCK;
+        else
+            err_sys("header recv error");
+    } 
+
+    if(read_size == static_cast<size_t>(status)){
+        return SUCCESS;
+    }
+    else
+        return status;
 }

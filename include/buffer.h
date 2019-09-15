@@ -14,18 +14,19 @@ public:
     explicit Buffer(size_t size);
     virtual ~Buffer() {}
 
-    virtual int Full() = 0;
-    virtual int Empty() = 0;
+    virtual int Full() const = 0;
+    virtual int Empty() const = 0;
+    virtual size_t Size() const = 0;
+
     virtual int ReadFromFd(int fd) = 0;
-    virtual int ReadFromFd(int fd, int read_size) = 0;
+    virtual int ReadFromFd(int fd, size_t read_size) = 0;
     virtual int WriteToFd(int fd) = 0;
-    virtual int ReadFromCharArray(char* from, size_t size) = 0;
-    virtual int WriteToCharArray(char* to, size_t size) = 0;
+    virtual int WriteToFd(int fd, size_t write_size) = 0;
     virtual int Clear() = 0;
 
 protected:
-    virtual void Init(size_t size) = 0;
-    virtual void Free() = 0;
+    /* virtual void Init(size_t size) = 0; */
+    /* virtual void Free() = 0; */
 
 };
 

@@ -30,7 +30,8 @@ public:
     bool send_data();
     void set_send_data(bool);
 
-    void SendError(int err);
+    void SendError(int to_user_id, int err);
+
 
     int Clear();
 private:
