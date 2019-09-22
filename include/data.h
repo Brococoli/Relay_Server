@@ -13,8 +13,8 @@ public:
     Data();
     virtual ~Data();
 
-    Buffer* auto_buffer();
-    void set_auto_buffer(Buffer* auto_buffer);
+    Buffer* auto_buffer() const { return auto_buffer_; }
+    void set_auto_buffer(Buffer* auto_buffer) { auto_buffer_ = auto_buffer; }
 
     virtual int Send(int fd);
     virtual int Recv(int fd);

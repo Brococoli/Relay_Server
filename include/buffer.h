@@ -6,7 +6,7 @@
 
 #include "utils.h"
 
-static const int MAXBUFSIZE = 8192;
+static const int MAXBUFSIZE = 10240;
 
 class Buffer{
 public:

@@ -34,7 +34,8 @@ public:
 
 
     int Clear();
-private:
+
+protected:
     Datagram* header_, *data_;
     bool recv_header_, send_header_;
     bool recv_data_, send_data_;

@@ -53,7 +53,7 @@ private:
 
     /* int left_to_read_; */
     /* int left_to_write_; */
-    static const int header_size_ = 55;
+    static const int header_size_ = 12;
     
 
 };

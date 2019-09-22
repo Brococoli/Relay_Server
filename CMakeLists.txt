@@ -16,4 +16,6 @@ add_executable(relay_server ${SRC_LIST} ./main.cc)
 
 add_executable(test_client ${SRC_LIST} ./test_client.cc)
 
+add_executable(relay_loader ${SRC_LIST} ./relay_loader.cc)
+
 

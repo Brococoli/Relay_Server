@@ -50,6 +50,8 @@ int main()
                 Data* data = dynamic_cast<Data*>(agent->data());
 
                 if(event & EPOLLRDHUP){
+                    if(agent->read_eof()==false) continue;
+                    fprintf(stderr, "close %d\n", fd);
                     close(agent->fd());
                     epoll.DeleteFd(agent->fd());
                     delete agent;
@@ -63,6 +65,7 @@ int main()
                         if(header->left_to_read()==0)
                             header->set_left_to_read(Header::header_size());
 
+                        agent->set_read_eof(false);
                         ret = agent->header()->Recv(agent->fd());
                         if(ret == SUCCESS){
                             agent->set_recv_header(true);
@@ -119,6 +122,7 @@ int main()
                             if(ret == SUCCESS){
                                 agent->set_send_data(true);
                                 agent->Clear();
+                                agent->set_read_eof(true);
 
                             }
                         }
