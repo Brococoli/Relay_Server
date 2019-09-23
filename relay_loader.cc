@@ -59,7 +59,10 @@ int main(int argc, char* argv[])
             err_sys("recv error");
         }
 
-        epoll.AddFd(fd, EPOLLIN | EPOLLOUT | EPOLLHUP, new RelayClientAgent(fd, i, msg_size));
+        RelayClientAgent* rca = new RelayClientAgent(fd, i , msg_size);
+        /* dynamic_cast<Header*>(rca->header()); */
+        /* dynamic_cast<Data*>(rca->data()); */
+        epoll.AddFd(fd, EPOLLIN | EPOLLOUT | EPOLLHUP, rca);
     }
 
     
@@ -72,8 +75,10 @@ int main(int argc, char* argv[])
     {
         int ndfs = epoll.Wait(1024, 10);
         for(int i=0; i<ndfs; i++){
+            /* std::cout<< cnt << std::endl; */
             int event = epoll.events[i].events;
-            RelayClientAgent* agent = (RelayClientAgent*)epoll.events[i].data.ptr;
+            /* fprintf(stdout, "fd: %d, event: %s, %s, %s\n", fd, (event&EPOLLIN)?"EPOLLIN":"NOTIN", (event&EPOLLOUT)?"EPOLLOUT":"NOTOUT", (event&EPOLLHUP)?"EPOLLRDHUP": "NOEPOLLHUB"); */
+            RelayClientAgent* agent = static_cast<RelayClientAgent*>(epoll.events[i].data.ptr);
             assert(agent);
 
             int from_id = agent->user_id();
@@ -81,7 +86,7 @@ int main(int argc, char* argv[])
             Data* data = dynamic_cast<Data*>(agent->data());
             fd = agent->fd();
 
-            if(event & EPOLLRDHUP){
+            if(event & EPOLLHUP){
                 printf("%d close", fd);
                 close(agent->fd());
                 epoll.DeleteFd(agent->fd());

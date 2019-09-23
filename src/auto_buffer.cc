@@ -59,6 +59,7 @@ void AutoBuffer::Free(){
         q = p->next_;
         FreeBufNode(p);
     }
+    front_ = rear_ = NULL;
 }
 int AutoBuffer::Clear(){
     AutoBufferNode* p, *q;

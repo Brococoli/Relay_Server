@@ -10,7 +10,7 @@ class UserManager
     /* typedef std::unordered_set<User>::iterator unordered_set_it; */ 
 public:
     UserManager();
-    ~UserManager();
+    virtual ~UserManager();
 
     int Register(int user_id, bool online = false);
     virtual int Register(User* user);

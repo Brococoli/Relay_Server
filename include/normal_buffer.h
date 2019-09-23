@@ -12,7 +12,7 @@ public:
     explicit NormalBuffer(size_t size = 2048);
     NormalBuffer(char* buf, size_t size);
 
-    ~NormalBuffer();
+    virtual ~NormalBuffer();
 
     char* ptr() const { return ptr_; }
 

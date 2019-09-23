@@ -14,7 +14,8 @@ NormalBuffer::NormalBuffer(char* buf, size_t size){
 }
 
 NormalBuffer::~NormalBuffer(){
-    if(ptr_) delete ptr_;
+    Free();
+    /* if(ptr_) delete ptr_; */
 }
 
 int NormalBuffer::Full() const {

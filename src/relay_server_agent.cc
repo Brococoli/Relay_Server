@@ -19,6 +19,7 @@ RelayServerAgent::RelayServerAgent(int fd){
 RelayServerAgent::~RelayServerAgent(){
     if(header_ != NULL) delete header_;
     if(data_ != NULL) delete data_;
+    header_ = data_ = NULL;
 }
 int RelayServerAgent::Clear(){
     recv_header_ = send_header_ = recv_data_ = send_data_ = false;

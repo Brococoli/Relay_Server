@@ -10,6 +10,7 @@ Epoll::Epoll(){
 Epoll::~Epoll(){
     close(epoll_fd_);
     delete ev_;
+    ev_ = NULL;
 }
 
 /* inline */

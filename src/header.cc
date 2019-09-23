@@ -28,6 +28,7 @@ Header::Header(int err){
 }
 Header::~Header(){
     if(normal_buffer_) delete normal_buffer_;
+    normal_buffer_ = NULL;
 }
 int Header::Clear(){
     byte_size_ = 0;
@@ -64,7 +65,7 @@ void Header::set_to_user_id(int to_user_id){
 int Header::ToNormalBuffer(){
     normal_buffer_->Clear();
 
-    int * pint = (int*)normal_buffer_->ptr();
+    int  * const pint = (int*)normal_buffer_->ptr();
     pint[0] = my_user_id_;
     pint[1] = byte_size_;
     pint[2] = to_user_id_;
@@ -91,13 +92,14 @@ int Header::ToNormalBuffer(){
 int Header::ToHeader(){
     /* Header* header = static_cast<Header*>(datagram); */
 
-    int * pint = (int*)normal_buffer_->ptr();
+    const int * pint = (int*)normal_buffer_->ptr();
 
-    byte_size_ = *(pint + 1);
-    my_user_id_ = *(pint);
-    to_user_id_ = *(pint+2);
+    byte_size_ = pint[1];
+    my_user_id_ = pint[0];
+    to_user_id_ = pint[2];
     datagram_type_ = 0;
     reserved_position_ = 0;
+
 
     normal_buffer_->Clear();
     return 0;

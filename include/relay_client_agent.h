@@ -8,10 +8,14 @@ class RelayClientAgent : public RelayServerAgent
 public:
     explicit RelayClientAgent(int fd, int user_id, int data_size):RelayServerAgent(fd), user_id_(user_id) {
         Data* data = dynamic_cast<Data*>(data_);
-        if(data->auto_buffer()) free(data->auto_buffer());
+        if(data->auto_buffer()) delete data->auto_buffer();
             data->set_auto_buffer(new NormalBuffer(data_size));
     }
-    ~RelayClientAgent() {}
+    virtual ~RelayClientAgent() {
+        if(data_) delete data_;
+        if(header_) delete header_;
+        data_ = header_ = 0;
+    }
 
     int user_id() const { return user_id_; }
 

@@ -12,6 +12,7 @@ Data::Data(){
 Data::~Data(){
     if(auto_buffer_) 
         delete auto_buffer_;
+    auto_buffer_ = NULL;
 }
 int Data::Clear(){
     reserved_position_ = 0;

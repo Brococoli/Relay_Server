@@ -9,7 +9,7 @@
 class RelayServerAgent: public Agent
 {
 public:
-    RelayServerAgent(int fd) ;
+    explicit RelayServerAgent(int fd) ;
     virtual ~RelayServerAgent();
 
     Datagram* header();
