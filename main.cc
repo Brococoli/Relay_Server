@@ -50,7 +50,7 @@ int main()
                 Data* data = dynamic_cast<Data*>(agent->data());
 
                 if(event & EPOLLRDHUP){
-                    if(agent->read_eof()==false) continue;
+                    /* if(agent->read_eof()==false) continue; */
                     fprintf(stderr, "close %d\n", fd);
                     close(agent->fd());
                     epoll.DeleteFd(agent->fd());
@@ -122,7 +122,7 @@ int main()
                             if(ret == SUCCESS){
                                 agent->set_send_data(true);
                                 agent->Clear();
-                                agent->set_read_eof(true);
+                                /* agent->set_read_eof(true); */
 
                             }
                         }
