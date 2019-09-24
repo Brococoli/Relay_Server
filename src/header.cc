@@ -112,8 +112,10 @@ int Header::Send(int fd){
     if(status < 0){
         if(errno == EWOULDBLOCK)
             return EWOULDBLOCK;
-        else
-            err_sys("header send error");
+        else{
+            err_msg("header send error");
+            return errno;
+        }
     }
     left_to_write_ -= status;
 
@@ -132,8 +134,10 @@ int Header::Send(int fd, size_t write_size){
     if(status < 0){
         if(errno == EWOULDBLOCK)
             return EWOULDBLOCK;
-        else
-            err_sys("header send error");
+        else{
+            err_msg("header send error");
+            return errno;
+        }
     }
 
     if(write_size == static_cast<size_t>(status)){
@@ -151,8 +155,10 @@ int Header::Recv(int fd){
     if(status < 0){
         if(errno == EWOULDBLOCK)
             return EWOULDBLOCK;
-        else
-            err_sys("header recv error");
+        else{
+            err_msg("header recv error");
+            return errno;
+        }
     } 
 
     left_to_read_ -= status;
@@ -173,8 +179,10 @@ int Header::Recv(int fd, size_t read_size){
     if(status < 0){
         if(errno == EWOULDBLOCK)
             return EWOULDBLOCK;
-        else
-            err_sys("header recv error");
+        else{
+            err_msg("header recv error");
+            return errno;
+        }
     } 
 
     if(read_size == static_cast<size_t>(status)){

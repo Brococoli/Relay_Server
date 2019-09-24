@@ -105,6 +105,7 @@ int main()
                         if(header->left_to_write() == 0)
                             header->set_left_to_write(Header::header_size());
                         ret = header->Send(to_fd);
+                        if(ret == ECONNRESET) continue;
                         if(ret == SUCCESS)
                             agent->set_send_header(true);
                     }
@@ -116,6 +117,7 @@ int main()
                                 data->set_left_to_write(header->byte_size());
 
                             ret = data->Send(to_fd);
+                            if(ret == ECONNRESET) continue;
                             if(ret == SUCCESS){
                                 agent->set_send_data(true);
                                 agent->Clear();

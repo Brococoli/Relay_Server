@@ -20,6 +20,10 @@ void err_ret(const char* msg){
     perror(msg);
     return;
 }
+void err_msg(const char* msg){
+    perror(msg);
+    return;
+}
 void err_quit(const char* msg){
     perror(msg);
     exit(-1);

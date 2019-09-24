@@ -207,8 +207,8 @@ int main(int argc, char* argv[])
     }
     /* std::cout << (end_total - start_total) << std::endl; */
     /* std::cout << (CLOCKS_PER_SEC) << std::endl; */
-    printf("total time: %lf, ", ((double)(end_total - start_total)/CLOCKS_PER_SEC));
-    printf("average delay time is %lf\n", ((double)total_delay/cnt/CLOCKS_PER_SEC));
+    printf("total time: %lfms, ", ((double)(end_total - start_total)/(CLOCKS_PER_SEC/1000)));
+    printf("average delay time is %lfms\n", ((double)total_delay/cnt/(CLOCKS_PER_SEC/1000)));
     return 0;
 }
 

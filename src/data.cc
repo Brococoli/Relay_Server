@@ -29,7 +29,10 @@ int Data::Send(int fd){
     if(status < 0){
         if(errno == EWOULDBLOCK)
             return EWOULDBLOCK;
-        err_sys("Data::Send error");
+        else{
+            err_msg("data send error");
+            return errno;
+        }
     }
     left_to_write_ -= status;
     if(left_to_write_ == 0){
@@ -45,7 +48,10 @@ int Data::Send(int fd, size_t write_size){
     if(status < 0){
         if(errno == EWOULDBLOCK)
             return EWOULDBLOCK;
-        err_sys("Data::Send error");
+        else{
+            err_msg("data send error");
+            return errno;
+        }
     }
     if(write_size == static_cast<size_t>(status)){
         return SUCCESS;
@@ -62,7 +68,10 @@ int Data::Recv(int fd){
     if(status < 0){
         if(errno == EWOULDBLOCK)
             return EWOULDBLOCK;
-        err_sys("data recv error");
+        else{
+            err_msg("data recv error");
+            return errno;
+        }
     }
 
     left_to_read_ -= status;
@@ -78,7 +87,10 @@ int Data::Recv(int fd, size_t read_size){
     if(status < 0){
         if(errno == EWOULDBLOCK)
             return EWOULDBLOCK;
-        err_sys("data recv error");
+        else{
+            err_msg("data recv error");
+            return errno;
+        }
     }
     if(read_size == static_cast<size_t>(status))
         return SUCCESS;
