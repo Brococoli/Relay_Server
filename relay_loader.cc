@@ -6,8 +6,8 @@
 #include "include/relay_client_agent.h"
 #include "include/utils.h"
 
-clock_t start[10000+5];
-clock_t end[10000+5];
+clock_t start[10000000+5];
+clock_t end[10000000+5];
 
 int main(int argc, char* argv[])
 {
@@ -17,8 +17,8 @@ int main(int argc, char* argv[])
 	int n;
 	int con_n = 0;
 	all_login = 0;
-	if (argc != 6) {
-		printf("Usage: %s <ip> <port> <talk_links> <msg_size> <times>\n", argv[0]);
+	if (argc != 6 || atoi(argv[5])>10000000) {
+		printf("Usage: %s <ip> <port> <talk_links> <msg_size> <times(<10000000)>\n", argv[0]);
 		exit(0);
 	}
 

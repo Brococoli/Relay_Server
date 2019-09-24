@@ -36,7 +36,7 @@ int main()
             agent = static_cast<RelayServerAgent*>(epoll.events[i].data.ptr);
             event = epoll.events[i].events;
             fd = agent->fd();
-            fprintf(stdout, "fd: %d, event: %s, %s, %s\n", fd, (event&EPOLLIN)?"EPOLLIN":"NOTIN", (event&EPOLLOUT)?"EPOLLOUT":"NOTOUT", (event&EPOLLRDHUP)?"EPOLLRDHUP": "NOEPOLLRDHUB");
+            /* fprintf(stdout, "fd: %d, event: %s, %s, %s\n", fd, (event&EPOLLIN)?"EPOLLIN":"NOTIN", (event&EPOLLOUT)?"EPOLLOUT":"NOTOUT", (event&EPOLLRDHUP)?"EPOLLRDHUP": "NOEPOLLRDHUB"); */
             if(fd == listenfd){
                 struct sockaddr sa;
                 socklen_t socklen = sizeof(sa);
@@ -51,8 +51,8 @@ int main()
 
                 if(event & EPOLLRDHUP){
                     /* if(agent->read_eof()==false) continue; */
-                    fprintf(stderr, "close %d\n", fd);
-                    close(agent->fd());
+                    /* fprintf(stderr, "close %d\n", fd); */
+                    close(fd);
                     epoll.DeleteFd(agent->fd());
                     delete agent;
                     continue;
@@ -65,8 +65,7 @@ int main()
                         if(header->left_to_read()==0)
                             header->set_left_to_read(Header::header_size());
 
-                        agent->set_read_eof(false);
-                        ret = agent->header()->Recv(agent->fd());
+                        ret = header->Recv(fd);
                         if(ret == SUCCESS){
                             agent->set_recv_header(true);
                             if(!user_manager.Exist(header->my_user_id()))
@@ -79,15 +78,13 @@ int main()
 
                         }
                     }
-                    else{
-                        if(!agent->recv_data()){
-                            if(data->left_to_read() == 0)
-                                data->set_left_to_read(header->byte_size());
-                            if(user_manager.Exist(header->to_user_id())){
-                                ret = data->Recv(fd);
-                                if(ret == SUCCESS)
-                                    agent->set_recv_data(true);
-                            }
+                    if(agent->recv_header()&&!agent->recv_data()){
+                        if(data->left_to_read() == 0)
+                            data->set_left_to_read(header->byte_size());
+                        if(user_manager.Exist(header->to_user_id())){
+                            ret = data->Recv(fd);
+                            if(ret == SUCCESS)
+                                agent->set_recv_data(true);
                         }
                     }
                 }
@@ -97,8 +94,8 @@ int main()
                         agent->SendError(header->to_user_id(), Agent::ENOTEXIST);
                         agent->Clear();
 
-                        close(agent->fd());
-                        epoll.DeleteFd(agent->fd());
+                        close(fd);
+                        epoll.DeleteFd(fd);
                         delete agent;
 
                         continue;
@@ -118,11 +115,10 @@ int main()
                             if(data->left_to_write() == 0)
                                 data->set_left_to_write(header->byte_size());
 
-                            ret = agent->data()->Send(to_fd);
+                            ret = data->Send(to_fd);
                             if(ret == SUCCESS){
                                 agent->set_send_data(true);
                                 agent->Clear();
-                                /* agent->set_read_eof(true); */
 
                             }
                         }
@@ -130,67 +126,6 @@ int main()
                             agent->SendError(fd, Agent::ENOTONLINE);
                         }
                     }
-                    /* if(event & EPOLLIN){ */
-                    /*     if(!agent->recv_header()){ */
-
-                    /*         if(agent->header()->Recv(agent->fd()) == SUCCESS){ */
-                    /*             if(agent->header()->datagram_type() < 0){ */
-                    /*                 close(agent->fd()); */
-                    /*                 epoll.DeleteFd(agent->fd()); */
-                    /*                 user_manager.Logout(header->my_user_id()); */
-                    /*                 delete agent; */
-                    /*                 continue; */
-                    /*             } */
-                    /*             else{ */
-                    /*                 if(!user_manager.Exist(header->my_user_id())) */
-                    /*                     user_manager.Register(new User(header->my_user_id(), agent->fd(), true)); */
-                    /*                 else */
-                    /*                     user_manager.Online(header->my_user_id()); */
-                    /*                 agent->set_recv_header(true); */
-                    /*                 data->set_left_to_read(header->byte_size()); */
-                    /*             } */
-                    /*         } */
-                    /*     } */
-                    /*     if(agent->recv_header() && !agent->recv_data()){ */
-                    /*         if(agent->data()->Recv(agent->fd()) == SUCCESS)  //no matter the to_id is online, we just recv the data */
-                    /*             agent->set_recv_data(true); */
-                    /*     } */
-
-                    /* } */
-                    /* if(event & EPOLLOUT){ */
-                    /*     if(agent->recv_header()&&!agent->send_header()){ */
-                    /*         if(user_manager.Exist(header->to_user_id()) == false){ */
-                    /*             agent->SendError(Agent::ENOTEXIST); //send error but not close the connect */
-                    /*             agent->Clear(); */
-                    /*             continue; */
-                    /*         } */
-                    /*         else{ */
-                    /*             if(user_manager.Online(header->to_user_id()) == true){ */
-                    /*                 if(agent->header()->Send(user_manager.GetUserFd(header->to_user_id())) == SUCCESS){ */
-                    /*                     agent->set_send_header(true); */
-
-                    /*                 } */
-                    /*             } */
-                    /*             else{ */
-                    /*                 agent->SendError(Agent::ENOTONLINE); */
-                    /*                 agent->Clear(); */
-                    /*                 continue; */
-                    /*             } */
-
-                    /*         } */
-
-                    /*     } */
-                    /*     if(agent->send_header()&&!agent->send_data()){ */
-                    /*         if(user_manager.Online(header->to_user_id()) == true){ */
-                    /*             if(agent->data()->Send(user_manager.GetUserFd(header->to_user_id())) == SUCCESS){ */
-                    /*                 if(agent->recv_data()){ */
-                    /*                     agent->set_send_data(true); */
-                    /*                     agent->Clear(); */
-                    /*                 } */
-                    /*             } */
-                    /*         } */
-                    /*     } */
-                    /* } */
                 }
 
             }
