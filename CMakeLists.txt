@@ -12,10 +12,10 @@ include_directories(include)
 aux_source_directory(src SRC_LIST)
 
 #user ${..} ./main.cc to pruduce relay_server
-add_executable(relay_server ${SRC_LIST} ./main.cc)
+add_executable(relay_server ${SRC_LIST} ./server.cc)
 
 add_executable(test_client ${SRC_LIST} ./test_client.cc)
 
-add_executable(relay_loader ${SRC_LIST} ./relay_loader.cc)
+add_executable(relay_loader ${SRC_LIST} ./loader.cc)
 
 
