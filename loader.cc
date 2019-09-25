@@ -51,18 +51,16 @@ int main(int argc, char* argv[])
         header.set_to_user_id(i);
         header.set_byte_size(0);
         header.set_left_to_write(Header::header_size());
-        while(header.Send(fd)!=SUCCESS) {};
+        while((ret = header.Send(fd))!=SUCCESS) {}
     
         header.set_left_to_read(Header::header_size());
-        while(header.Recv(fd)!=SUCCESS) {};
+        while((ret = header.Recv(fd))!=SUCCESS) {}
+
         if(header.datagram_type() < 0){
             err_sys("recv error");
         }
 
-        RelayClientAgent* rca = new RelayClientAgent(fd, i , msg_size);
-        /* dynamic_cast<Header*>(rca->header()); */
-        /* dynamic_cast<Data*>(rca->data()); */
-        epoll.AddFd(fd, EPOLLIN | EPOLLOUT | EPOLLHUP, rca);
+        epoll.AddFd(fd, EPOLLIN | EPOLLOUT | EPOLLHUP, new RelayClientAgent(fd, i , msg_size));
     }
 
     
@@ -208,7 +206,7 @@ int main(int argc, char* argv[])
     /* std::cout << (end_total - start_total) << std::endl; */
     /* std::cout << (CLOCKS_PER_SEC) << std::endl; */
     printf("total time: %lfms, ", ((double)(end_total - start_total)/(CLOCKS_PER_SEC/1000)));
-    printf("average delay time is %lfms\n", ((double)total_delay/cnt/(CLOCKS_PER_SEC/1000)));
+    printf("average delay time is %lfus\n", ((double)total_delay/cnt/(CLOCKS_PER_SEC/1000000)));
     return 0;
 }
 

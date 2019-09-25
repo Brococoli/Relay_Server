@@ -65,9 +65,8 @@ int UserManager::Unregister(User* user){
     return user_map_.erase(user->user_id());
 }
 
-
 bool UserManager::Exist(int user_id){
-    return GetUserPtr(user_id) != NULL;
+    return user_map_.find(user_id) != user_map_.end();
 }
 bool UserManager::Online(int user_id){
     User* user = NULL;
@@ -75,12 +74,11 @@ bool UserManager::Online(int user_id){
     return user->online();
 }
 User* UserManager::GetUserPtr(int user_id){
-    std::map<int, User*>::iterator it = user_map_.find(user_id);
-    return it->second; //if not find then it->second == false
+    if(Exist(user_id)) return user_map_[user_id];
+    else return NULL;
 }
 void UserManager::SetUserPtr(int user_id, User * user){
     user_map_[user_id] = user;
-
 }
 
 int UserManager::GetUserFd(int user_id){
